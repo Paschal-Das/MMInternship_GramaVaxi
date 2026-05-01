@@ -17,6 +17,9 @@ interface AnimalDao {
     @Delete
     suspend fun deleteAnimal(animal: Animal)
 
+    @Update
+    suspend fun updateAnimal(animal: Animal)
+
     @Query("SELECT * FROM animals WHERE id = :id")
     suspend fun getAnimalById(id: Int): Animal?
 

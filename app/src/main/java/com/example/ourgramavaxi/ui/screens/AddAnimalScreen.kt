@@ -27,8 +27,11 @@ import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel) {
+fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel, animalId: Int? = null) {
     val context = LocalContext.current
+    val animals by viewModel.allAnimals.collectAsState(initial = emptyList())
+    val existingAnimal = remember(animalId, animals) { animals.find { it.id == animalId } }
+
     var name by remember { mutableStateOf("") }
     var selectedSpecies by remember { mutableStateOf(AnimalConstants.SPECIES[0]) } 
     var selectedBreed by remember { mutableStateOf("") }
@@ -46,6 +49,23 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
     var customVaccineName by remember { mutableStateOf("") }
     var lastVaccineDate by remember { mutableStateOf<Long?>(null) }
     var nextVaccineDate by remember { mutableStateOf<Long?>(null) }
+
+    // Initialize with existing data if editing
+    LaunchedEffect(existingAnimal) {
+        existingAnimal?.let {
+            name = it.name
+            selectedSpecies = it.species
+            selectedBreed = it.breed
+            selectedGender = it.gender
+            selectedDistrict = it.district
+            selectedDistrictResId = AnimalConstants.DISTRICTS.find { d -> d.first == it.district }?.second ?: AnimalConstants.DISTRICTS[0].second
+            age = it.ageInYears.toString()
+            notes = it.notes
+            
+            // Note: Vaccinations are complex to prepopulate in a simple dropdown, 
+            // but the main data fields are now editable.
+        }
+    }
     
     val breeds = if (selectedSpecies == "Sheep") AnimalConstants.SHEEP_BREEDS else AnimalConstants.GOAT_BREEDS
     var breedExpanded by remember { mutableStateOf(false) }
@@ -310,18 +330,34 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
                                 nextVaccineMap[finalVaccineName] = nextVaccineDate
                             }
 
-                            viewModel.addAnimal(
-                                name = name,
-                                species = selectedSpecies,
-                                breed = finalBreed,
-                                gender = selectedGender,
-                                ageInYears = age.toIntOrNull() ?: 0,
-                                district = selectedDistrict,
-                                notes = notes,
-                                photoUri = null, 
-                                lastVaccineDates = vaccineMap,
-                                nextVaccineDates = nextVaccineMap
-                            )
+                            if (animalId != null) {
+                                viewModel.updateAnimal(
+                                    id = animalId,
+                                    name = name,
+                                    species = selectedSpecies,
+                                    breed = finalBreed,
+                                    gender = selectedGender,
+                                    ageInYears = age.toIntOrNull() ?: 0,
+                                    district = selectedDistrict,
+                                    notes = notes,
+                                    photoUri = null,
+                                    lastVaccineDates = vaccineMap,
+                                    nextVaccineDates = nextVaccineMap
+                                )
+                            } else {
+                                viewModel.addAnimal(
+                                    name = name,
+                                    species = selectedSpecies,
+                                    breed = finalBreed,
+                                    gender = selectedGender,
+                                    ageInYears = age.toIntOrNull() ?: 0,
+                                    district = selectedDistrict,
+                                    notes = notes,
+                                    photoUri = null, 
+                                    lastVaccineDates = vaccineMap,
+                                    nextVaccineDates = nextVaccineMap
+                                )
+                            }
                             navController.popBackStack()
                         }
                     },
@@ -374,23 +410,18 @@ fun DatePickerField(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { showDatePicker() }
     ) {
         OutlinedTextField(
             value = if (selectedDate != null) sdf.format(Date(selectedDate)) else "",
             onValueChange = {},
             readOnly = true,
-            enabled = false,
             label = { Text(label) },
             trailingIcon = {
-                Icon(Icons.Default.CalendarMonth, contentDescription = null)
+                IconButton(onClick = { showDatePicker() }) {
+                    Icon(Icons.Default.CalendarMonth, contentDescription = null)
+                }
             },
-            modifier = Modifier.fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                disabledTextColor = MaterialTheme.colorScheme.onSurface,
-                disabledBorderColor = MaterialTheme.colorScheme.outline,
-                disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            modifier = Modifier.fillMaxWidth().clickable { showDatePicker() }
         )
     }
 }

@@ -6,9 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.PendingActions
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,7 +23,6 @@ import coil.compose.AsyncImage
 import com.example.ourgramavaxi.R
 import com.example.ourgramavaxi.data.*
 import com.example.ourgramavaxi.viewmodel.AnimalViewModel
-import kotlinx.coroutines.flow.map
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,6 +44,13 @@ fun AnimalDetailScreen(animalId: Int, navController: NavHostController, viewMode
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    animal?.let {
+                        IconButton(onClick = { navController.navigate("edit_animal/${it.id}") }) {
+                            Icon(Icons.Default.Edit, contentDescription = "Edit")
+                        }
                     }
                 }
             )
@@ -115,7 +119,6 @@ fun AnimalInfoCard(animal: Animal) {
     val speciesText = if (animal.species == "Sheep") stringResource(R.string.sheep) else stringResource(R.string.goat)
     val genderText = if (animal.gender == "Male") stringResource(R.string.male) else stringResource(R.string.female)
     
-    // Look up breed translation if possible
     val breedResId = (AnimalConstants.SHEEP_BREEDS + AnimalConstants.GOAT_BREEDS)
         .find { it.first == animal.breed }?.second
     val breedText = if (breedResId != null) stringResource(breedResId) else animal.breed
@@ -175,7 +178,6 @@ fun VaccineItem(vaccination: Vaccination, isPast: Boolean) {
         vaccination.nextDueDate?.let { sdf.format(Date(it)) } ?: "TBD"
     }
     
-    // Map vaccine key to resource
     val vaccineResId = when (vaccination.vaccineName) {
         VaccineConstants.FMD -> R.string.fmd_vaccine
         VaccineConstants.PPR -> R.string.ppr_vaccine

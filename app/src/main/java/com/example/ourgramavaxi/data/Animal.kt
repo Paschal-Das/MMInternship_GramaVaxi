@@ -23,14 +23,37 @@ object AnimalConstants {
     val GENDERS = listOf("Male", "Female")
 
     val DISTRICTS = listOf(
-        "Mandya" to R.string.mandya,
-        "Hassan" to R.string.hassan,
-        "Chamarajanagar" to R.string.chamarajanagar,
-        "Mysuru" to R.string.mysuru,
-        "Tumakuru" to R.string.tumakuru,
+        "Bagalkot" to R.string.bagalkot,
+        "Ballari" to R.string.ballari,
+        "Belagavi" to R.string.belagavi,
         "Bengaluru Rural" to R.string.bengaluru_rural,
-        "Chikkaballapura" to R.string.chikkaballapura,
-        "Kolar" to R.string.kolar
+        "Bengaluru Urban" to R.string.bengaluru_urban,
+        "Bidar" to R.string.bidar,
+        "Chamarajanagar" to R.string.chamarajanagar,
+        "Chikkaballapur" to R.string.chikkaballapur,
+        "Chikkamagaluru" to R.string.chikkamagaluru,
+        "Chitradurga" to R.string.chitradurga,
+        "Dakshina Kannada" to R.string.dakshina_kannada,
+        "Davanagere" to R.string.davanagere,
+        "Dharwad" to R.string.dharwad,
+        "Gadag" to R.string.gadag,
+        "Hassan" to R.string.hassan,
+        "Haveri" to R.string.haveri,
+        "Kalaburagi" to R.string.kalaburagi,
+        "Kodagu" to R.string.kodagu,
+        "Kolar" to R.string.kolar,
+        "Koppal" to R.string.koppal,
+        "Mandya" to R.string.mandya,
+        "Mysuru" to R.string.mysuru,
+        "Raichur" to R.string.raichur,
+        "Ramanagara" to R.string.ramanagara,
+        "Shivamogga" to R.string.shivamogga,
+        "Tumakuru" to R.string.tumakuru,
+        "Udupi" to R.string.udupi,
+        "Uttara Kannada" to R.string.uttara_kannada,
+        "Vijayapura" to R.string.vijayapura,
+        "Yadgir" to R.string.yadgir,
+        "Vijayanagara" to R.string.vijayanagara
     )
     
     val SHEEP_BREEDS = listOf(

@@ -42,6 +42,10 @@ class MainActivity : ComponentActivity() {
                         composable("dashboard") { DashboardScreen(navController, viewModel) }
                         composable("animal_ledger") { AnimalLedgerScreen(navController, viewModel) }
                         composable("add_animal") { AddAnimalScreen(navController, viewModel) }
+                        composable("edit_animal/{animalId}") { backStackEntry ->
+                            val animalId = backStackEntry.arguments?.getString("animalId")?.toIntOrNull()
+                            AddAnimalScreen(navController, viewModel, animalId)
+                        }
                         composable("animal_detail/{animalId}") { backStackEntry ->
                             val animalId = backStackEntry.arguments?.getString("animalId")?.toIntOrNull() ?: 0
                             AnimalDetailScreen(animalId, navController, viewModel)

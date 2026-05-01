@@ -28,7 +28,7 @@
     <string name="bidri">Bidri</string>
     <string name="malnad_gidda">Malnad Gidda</string>
     <string name="beetal">Beetal</string>
-    <string name="kodagu">Kodagu</string>
+    <string name="kodagu">Kodagu (Coorg)</string>
 
     <!-- Vaccines -->
     <string name="fmd_vaccine">FMD Vaccine</string>
@@ -41,14 +41,37 @@
     <string name="animal_saved">Animal saved successfully</string>
     <string name="fill_required">Please fill all required fields</string>
     <string name="select_district">Select District</string>
-    <string name="mandya">Mandya</string>
-    <string name="hassan">Hassan</string>
-    <string name="chamarajanagar">Chamarajanagar</string>
-    <string name="mysuru">Mysuru</string>
-    <string name="tumakuru">Tumakuru</string>
+    <string name="bagalkot">Bagalkot</string>
+    <string name="ballari">Ballari (Bellary)</string>
+    <string name="belagavi">Belagavi (Belgaum)</string>
     <string name="bengaluru_rural">Bengaluru Rural</string>
-    <string name="chikkaballapura">Chikkaballapura</string>
+    <string name="bengaluru_urban">Bengaluru Urban</string>
+    <string name="bidar">Bidar</string>
+    <string name="chamarajanagar">Chamarajanagar</string>
+    <string name="chikkaballapur">Chikkaballapur</string>
+    <string name="chikkamagaluru">Chikkamagaluru (Chikmagalur)</string>
+    <string name="chitradurga">Chitradurga</string>
+    <string name="dakshina_kannada">Dakshina Kannada</string>
+    <string name="davanagere">Davanagere</string>
+    <string name="dharwad">Dharwad</string>
+    <string name="gadag">Gadag</string>
+    <string name="hassan">Hassan</string>
+    <string name="haveri">Haveri</string>
+    <string name="kalaburagi">Kalaburagi (Gulbarga)</string>
+    <string name="kodagu">Kodagu (Coorg)</string>
     <string name="kolar">Kolar</string>
+    <string name="koppal">Koppal</string>
+    <string name="mandya">Mandya</string>
+    <string name="mysuru">Mysuru (Mysore)</string>
+    <string name="raichur">Raichur</string>
+    <string name="ramanagara">Ramanagara</string>
+    <string name="shivamogga">Shivamogga (Shimoga)</string>
+    <string name="tumakuru">Tumakuru (Tumkur)</string>
+    <string name="udupi">Udupi</string>
+    <string name="uttara_kannada">Uttara Kannada (Karwar)</string>
+    <string name="vijayapura">Vijayapura (Bijapur)</string>
+    <string name="yadgir">Yadgir</string>
+    <string name="vijayanagara">Vijayanagara</string>
 
     <string name="enter_breed_name">Enter Breed Name</string>
     <string name="enter_age_years">Enter age in years</string>
