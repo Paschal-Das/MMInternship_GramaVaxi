@@ -49,7 +49,7 @@ fun DashboardScreen(navController: NavHostController, viewModel: AnimalViewModel
                             color = MaterialTheme.colorScheme.primary
                         )
                     }
-                    IconButton(onClick = { /* Notifications */ }) {
+                    IconButton(onClick = { navController.navigate("vaccine_calendar") }) {
                         Icon(Icons.Default.Notifications, contentDescription = "Notifications")
                     }
                 }

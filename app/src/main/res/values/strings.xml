@@ -73,6 +73,15 @@
     <string name="register_now">Register Now</string>
     <string name="cancel_registration">Cancel Registration</string>
     <string name="registered_msg">Registered for %1$s!</string>
+    <string name="notes_description">Notes / Description</string>
+    <string name="active_campaign_window">Active Campaign Window</string>
+    <string name="govt_prioritizing">Karnataka Govt. is currently prioritizing: </string>
+    <string name="animal_schedule">Your Animal Schedule</string>
+    <string name="no_vaccinations_scheduled">No vaccinations scheduled.</string>
+    <string name="animal_label">Animal: </string>
+    <string name="date_label">Date: </string>
+    <string name="add_photo">Add Photo</string>
+    <string name="change_photo">Change Photo</string>
     <string name="back">Back</string>
     <string name="fmd_camp_title">FMD Vaccination Camp</string>
     <string name="fmd_camp_desc">Government organized FMD vaccination drive for all livestock in the village.</string>

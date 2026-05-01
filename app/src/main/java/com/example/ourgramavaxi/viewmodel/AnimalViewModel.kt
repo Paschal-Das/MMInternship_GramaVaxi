@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.ourgramavaxi.R
 import com.example.ourgramavaxi.data.*
@@ -41,7 +43,10 @@ class AnimalViewModel(application: Application, private val animalDao: AnimalDao
         gender: String,
         ageInYears: Int,
         district: String = "Mandya",
-        lastVaccineDates: Map<String, Long?> = emptyMap()
+        notes: String = "",
+        photoUri: String? = null,
+        lastVaccineDates: Map<String, Long?> = emptyMap(),
+        nextVaccineDates: Map<String, Long?> = emptyMap()
     ) {
         viewModelScope.launch {
             val newAnimal = Animal(
@@ -50,15 +55,17 @@ class AnimalViewModel(application: Application, private val animalDao: AnimalDao
                 breed = breed,
                 gender = gender,
                 ageInYears = ageInYears,
-                district = district
+                district = district,
+                notes = notes,
+                photoUri = photoUri
             )
             val id = animalDao.insertAnimal(newAnimal).toInt()
 
-            // Process provided vaccination history and schedule next doses
+            // Process provided vaccination history
             lastVaccineDates.forEach { (vaccineName, lastDate) ->
                 if (lastDate != null) {
-                    val intervalDays = VaccineConstants.VACCINE_INTERVALS[vaccineName] ?: 365
-                    val nextDate = lastDate + (intervalDays.toLong() * 24 * 60 * 60 * 1000L)
+                    // Use user-provided next date if available, otherwise calculate
+                    val nextDate = nextVaccineDates[vaccineName] ?: (lastDate + (365L * 24 * 60 * 60 * 1000L))
                     
                     // Record the past dose
                     animalDao.insertVaccination(
@@ -68,6 +75,21 @@ class AnimalViewModel(application: Application, private val animalDao: AnimalDao
                             dateAdministered = lastDate,
                             nextDueDate = nextDate,
                             isCompleted = true
+                        )
+                    )
+                }
+            }
+
+            // Handle vaccines where only next date is provided (pending dose)
+            nextVaccineDates.forEach { (vaccineName, nextDate) ->
+                if (nextDate != null && !lastVaccineDates.containsKey(vaccineName)) {
+                    animalDao.insertVaccination(
+                        Vaccination(
+                            animalId = id,
+                            vaccineName = vaccineName,
+                            dateAdministered = 0,
+                            nextDueDate = nextDate,
+                            isCompleted = false
                         )
                     )
                 }
@@ -107,11 +129,17 @@ class AnimalViewModel(application: Application, private val animalDao: AnimalDao
     }
 
     private fun scheduleVaccineReminder() {
-        val workRequest = OneTimeWorkRequestBuilder<VaccineWorker>()
-            .setInitialDelay(30, TimeUnit.SECONDS)
-            .addTag("vaccine_reminder")
+        // Use a PeriodicWorkRequest to check daily
+        val workRequest = PeriodicWorkRequestBuilder<VaccineWorker>(24, TimeUnit.HOURS)
+            .setInitialDelay(1, TimeUnit.HOURS)
+            .addTag("vaccine_periodic_check")
             .build()
-        WorkManager.getInstance(getApplication()).enqueue(workRequest)
+        
+        WorkManager.getInstance(getApplication()).enqueueUniquePeriodicWork(
+            "vaccine_reminder_periodic",
+            ExistingPeriodicWorkPolicy.KEEP,
+            workRequest
+        )
     }
 
     fun deleteAnimal(animal: Animal) {
@@ -122,18 +150,39 @@ class AnimalViewModel(application: Application, private val animalDao: AnimalDao
 
     fun seedSampleData() {
         viewModelScope.launch {
-            // Seed Animal
-            val id = animalDao.insertAnimal(
-                Animal(name = "Gauri", species = "Goat", breed = "Bidri", gender = "Female", ageInYears = 2)
+            // Check if data already exists to avoid duplicates
+            val count = animalDao.getAnimalCount()
+            if (count > 0) return@launch
+
+            // Seed Sheep
+            val sheepId = animalDao.insertAnimal(
+                Animal(name = "Muttu", species = "Sheep", breed = "Yelaga", gender = "Male", ageInYears = 1, notes = "Healthy ram")
             ).toInt()
             
-            val lastFmd = System.currentTimeMillis() - (100L * 24 * 60 * 60 * 1000L) // 100 days ago
+            // Seed Goat
+            val goatId = animalDao.insertAnimal(
+                Animal(name = "Gauri", species = "Goat", breed = "Sirohi", gender = "Female", ageInYears = 2, notes = "Due for PPR")
+            ).toInt()
+
+            val now = System.currentTimeMillis()
+            val day = 24 * 60 * 60 * 1000L
+
+            // Muttu's FMD (Recent)
             animalDao.insertVaccination(Vaccination(
-                animalId = id,
+                animalId = sheepId,
                 vaccineName = VaccineConstants.FMD,
-                dateAdministered = lastFmd,
-                nextDueDate = lastFmd + (180L * 24 * 60 * 60 * 1000L),
+                dateAdministered = now - (30 * day),
+                nextDueDate = now + (150 * day),
                 isCompleted = true
+            ))
+
+            // Gauri's PPR (Overdue)
+            animalDao.insertVaccination(Vaccination(
+                animalId = goatId,
+                vaccineName = VaccineConstants.PPR,
+                dateAdministered = now - (400 * day),
+                nextDueDate = now - (35 * day), // Overdue by a month
+                isCompleted = false
             ))
 
             // Seed Camp Alerts

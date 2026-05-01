@@ -8,6 +8,9 @@ interface AnimalDao {
     @Query("SELECT * FROM animals ORDER BY id DESC")
     fun getAllAnimals(): Flow<List<Animal>>
 
+    @Query("SELECT COUNT(*) FROM animals")
+    suspend fun getAnimalCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAnimal(animal: Animal): Long
 

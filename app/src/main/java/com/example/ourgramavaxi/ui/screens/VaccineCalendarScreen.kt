@@ -68,12 +68,12 @@ fun VaccineCalendarScreen(navController: NavHostController, viewModel: AnimalVie
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
                                 Text(
-                                    text = "Active Campaign Window (ಸಕ್ರಿಯ ಲಸಿಕೆ ಅಭಿಯಾನ)",
+                                    text = stringResource(R.string.active_campaign_window),
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onTertiaryContainer
                                 )
                                 Text(
-                                    text = "Karnataka Govt. is currently prioritizing: ${activeCampaigns.joinToString(", ")}",
+                                    text = "${stringResource(R.string.govt_prioritizing)}${activeCampaigns.joinToString(", ")}",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onTertiaryContainer
                                 )
@@ -86,7 +86,7 @@ fun VaccineCalendarScreen(navController: NavHostController, viewModel: AnimalVie
             // Scheduled Vaccines
             item {
                 Text(
-                    text = "Your Animal Schedule (ನಿಮ್ಮ ವೇಳಾಪಟ್ಟಿ)",
+                    text = stringResource(R.string.animal_schedule),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
@@ -97,7 +97,7 @@ fun VaccineCalendarScreen(navController: NavHostController, viewModel: AnimalVie
             if (upcoming.isEmpty()) {
                 item {
                     Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
-                        Text("No vaccinations scheduled.", color = MaterialTheme.colorScheme.outline)
+                        Text(stringResource(R.string.no_vaccinations_scheduled), color = MaterialTheme.colorScheme.outline)
                     }
                 }
             } else {
@@ -118,12 +118,12 @@ fun VaccineCalendarScreen(navController: NavHostController, viewModel: AnimalVie
                             Spacer(modifier = Modifier.width(16.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(text = vacc.vaccineName, fontWeight = FontWeight.Bold)
-                                Text(text = "Animal: ${animal?.name ?: "Unknown"}", style = MaterialTheme.typography.bodyMedium)
+                                Text(text = "${stringResource(R.string.animal_label)}${animal?.name ?: "Unknown"}", style = MaterialTheme.typography.bodyMedium)
                                 vacc.nextDueDate?.let {
                                     val date = Date(it)
                                     val isOverdue = it < System.currentTimeMillis()
                                     Text(
-                                        text = "Date: ${dateFormat.format(date)}",
+                                        text = "${stringResource(R.string.date_label)}${dateFormat.format(date)}",
                                         color = if (isOverdue) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary,
                                         fontWeight = if (isOverdue) FontWeight.Bold else FontWeight.Normal
                                     )

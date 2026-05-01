@@ -13,6 +13,7 @@ data class Animal(
     val gender: String, // "Male" or "Female"
     val ageInYears: Int,
     val district: String = "Mandya", // Default for prototype
+    val notes: String = "",
     val photoUri: String? = null,
     val dateAdded: Long = System.currentTimeMillis()
 )
@@ -83,7 +84,7 @@ object VaccineConstants {
 
     // Seasonal Windows (Month indices: 0 = Jan, 1 = Feb, etc.)
     val SEASONAL_WINDOWS = mapOf(
-        FMD to listOf(3, 9),      // April (3) & October (9)
+        FMD to listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), // For prototype: Always active
         HS to listOf(4, 5),       // May (4) & June (5) - Pre-monsoon
         POX to listOf(1, 2),      // Feb (1) & March (2) - Pre-summer
         ANTHRAX to listOf(7, 8)   // Aug (7) & Sept (8) - Post-monsoon windows

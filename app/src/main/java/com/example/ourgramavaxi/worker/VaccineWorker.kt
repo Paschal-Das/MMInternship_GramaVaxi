@@ -17,26 +17,26 @@ class VaccineWorker(
         val database = AppDatabase.getDatabase(applicationContext)
         val animalDao = database.animalDao()
         
-        // Check for upcoming vaccinations in the next 7 days
+        // Check for upcoming vaccinations
         val upcoming = animalDao.getAllUpcomingVaccinations().first()
         val now = System.currentTimeMillis()
-        val sevenDaysFromNow = now + (7L * 24 * 60 * 60 * 1000L)
         
-        val overdueOrNear = upcoming.filter { 
-            it.nextDueDate != null && it.nextDueDate <= sevenDaysFromNow && !it.isCompleted
+        // Target: Notify 3 days before nextDueDate
+        // Notification Window: Between (nextDueDate - 3 days) and nextDueDate
+        val threeDaysInMs = 3L * 24 * 60 * 60 * 1000L
+        
+        val dueForNotification = upcoming.filter { vacc ->
+            val dueDate = vacc.nextDueDate ?: 0L
+            val notifyStartTime = dueDate - threeDaysInMs
+            
+            !vacc.isCompleted && dueDate > 0 && now >= notifyStartTime && now < dueDate
         }
 
-        if (overdueOrNear.isNotEmpty()) {
-            val animal = animalDao.getAnimalById(overdueOrNear.first().animalId)
+        dueForNotification.forEach { vacc ->
+            val animal = animalDao.getAnimalById(vacc.animalId)
             notificationHelper.showNotification(
-                title = "Vaccination Due! (ಲಸಿಕೆ ಬಾಕಿ ಇದೆ)",
-                message = "${animal?.name ?: "Your animal"} is due for ${overdueOrNear.first().vaccineName} soon."
-            )
-        } else {
-            // Fallback for prototype visibility
-            notificationHelper.showNotification(
-                title = "Grama-Vaxi Update",
-                message = "Your livestock records are being monitored for health alerts."
+                title = "Upcoming Vaccine! (ಲಸಿಕೆ ಸಮಯ)",
+                message = "${animal?.name ?: "Animal"} is due for ${vacc.vaccineName} in 3 days."
             )
         }
 

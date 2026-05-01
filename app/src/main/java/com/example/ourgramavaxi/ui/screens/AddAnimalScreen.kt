@@ -2,11 +2,8 @@ package com.example.ourgramavaxi.ui.screens
 
 import android.app.DatePickerDialog
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -33,7 +30,7 @@ import java.util.*
 fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel) {
     val context = LocalContext.current
     var name by remember { mutableStateOf("") }
-    var selectedSpecies by remember { mutableStateOf(AnimalConstants.SPECIES[0]) } // Default to Sheep
+    var selectedSpecies by remember { mutableStateOf(AnimalConstants.SPECIES[0]) } 
     var selectedBreed by remember { mutableStateOf("") }
     var selectedBreedResId by remember { mutableStateOf<Int?>(null) }
     var otherBreed by remember { mutableStateOf("") }
@@ -41,13 +38,30 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
     var selectedDistrict by remember { mutableStateOf(AnimalConstants.DISTRICTS[0].first) }
     var selectedDistrictResId by remember { mutableStateOf(AnimalConstants.DISTRICTS[0].second) }
     var age by remember { mutableStateOf("") }
+    var notes by remember { mutableStateOf("") }
     
-    // Map to store last vaccination dates for each vaccine
-    val vaccineDates = remember { mutableStateMapOf<String, Long?>() }
+    // Simplified Vaccination State
+    var selectedVaccine by remember { mutableStateOf<String?>(null) }
+    var selectedVaccineResId by remember { mutableStateOf<Int?>(null) }
+    var customVaccineName by remember { mutableStateOf("") }
+    var lastVaccineDate by remember { mutableStateOf<Long?>(null) }
+    var nextVaccineDate by remember { mutableStateOf<Long?>(null) }
     
     val breeds = if (selectedSpecies == "Sheep") AnimalConstants.SHEEP_BREEDS else AnimalConstants.GOAT_BREEDS
     var breedExpanded by remember { mutableStateOf(false) }
     var districtExpanded by remember { mutableStateOf(false) }
+    var vaccineExpanded by remember { mutableStateOf(false) }
+
+    val vaccines = listOf(
+        VaccineConstants.FMD to R.string.fmd_vaccine,
+        VaccineConstants.PPR to R.string.ppr_vaccine,
+        VaccineConstants.POX to R.string.pox_vaccine,
+        VaccineConstants.HS to R.string.hs_vaccine,
+        VaccineConstants.BLUETONGUE to R.string.bluetongue_vaccine,
+        VaccineConstants.ENTEROTOXEMIA to R.string.enterotoxemia,
+        VaccineConstants.ANTHRAX to R.string.anthrax_vaccine,
+        "Others" to R.string.others
+    )
 
     Scaffold(
         topBar = {
@@ -87,7 +101,7 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
                             selected = (selectedSpecies == species),
                             onClick = { 
                                 selectedSpecies = species
-                                selectedBreed = "" // Reset breed on species change
+                                selectedBreed = "" 
                             }
                         )
                         Text(
@@ -147,6 +161,17 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
                 }
             }
 
+            // Age
+            item {
+                OutlinedTextField(
+                    value = age,
+                    onValueChange = { if (it.all { c -> c.isDigit() }) age = it },
+                    label = { Text(stringResource(R.string.age_years)) },
+                    modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
+                )
+            }
+
             // District Selection
             item {
                 ExposedDropdownMenuBox(
@@ -179,65 +204,94 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
                 }
             }
 
-            // Gender
-            item {
-                Text(stringResource(R.string.gender), fontWeight = FontWeight.Bold)
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    AnimalConstants.GENDERS.forEach { gender ->
-                        RadioButton(
-                            selected = (selectedGender == gender),
-                            onClick = { selectedGender = gender }
-                        )
-                        Text(
-                            text = if (gender == "Male") stringResource(R.string.male) else stringResource(R.string.female),
-                            modifier = Modifier.padding(end = 16.dp)
-                        )
-                    }
-                }
-            }
-
-            // Age
+            // Notes / Description
             item {
                 OutlinedTextField(
-                    value = age,
-                    onValueChange = { if (it.all { c -> c.isDigit() }) age = it },
-                    label = { Text(stringResource(R.string.age_years)) },
+                    value = notes,
+                    onValueChange = { notes = it },
+                    label = { Text(stringResource(R.string.notes_description)) },
                     modifier = Modifier.fillMaxWidth(),
-                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
-                        keyboardType = androidx.compose.ui.text.input.KeyboardType.Number
-                    )
+                    minLines = 3
                 )
             }
 
-            // Vaccination History Header
+            // Simplified Vaccination Section
             item {
-                Divider()
+                HorizontalDivider()
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = stringResource(R.string.last_vaccination),
+                    text = stringResource(R.string.vaccination_history),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.primary
                 )
             }
 
-            // List of Vaccines
-            val vaccines = listOf(
-                VaccineConstants.FMD to R.string.fmd_vaccine,
-                VaccineConstants.PPR to R.string.ppr_vaccine,
-                VaccineConstants.POX to R.string.pox_vaccine,
-                VaccineConstants.HS to R.string.hs_vaccine,
-                VaccineConstants.BLUETONGUE to R.string.bluetongue_vaccine,
-                VaccineConstants.ENTEROTOXEMIA to R.string.enterotoxemia,
-                VaccineConstants.ANTHRAX to R.string.anthrax_vaccine
-            )
+            item {
+                ExposedDropdownMenuBox(
+                    expanded = vaccineExpanded,
+                    onExpandedChange = { vaccineExpanded = !vaccineExpanded }
+                ) {
+                    val displayText = if (selectedVaccine == "Others") {
+                        "${stringResource(R.string.others)}: $customVaccineName"
+                    } else if (selectedVaccineResId != null) {
+                        stringResource(selectedVaccineResId!!)
+                    } else {
+                        ""
+                    }
+                    
+                    OutlinedTextField(
+                        value = displayText,
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("Select Vaccine (Optional)") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = vaccineExpanded) },
+                        modifier = Modifier.menuAnchor().fillMaxWidth()
+                    )
+                    ExposedDropdownMenu(
+                        expanded = vaccineExpanded,
+                        onDismissRequest = { vaccineExpanded = false }
+                    ) {
+                        vaccines.forEach { (vKey, vResId) ->
+                            DropdownMenuItem(
+                                text = { Text(stringResource(vResId)) },
+                                onClick = {
+                                    selectedVaccine = vKey
+                                    selectedVaccineResId = vResId
+                                    vaccineExpanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+            }
 
-            items(vaccines) { (vaccineKey, vaccineResId) ->
-                VaccineDatePickerField(
-                    vaccineName = stringResource(vaccineResId),
-                    selectedDate = vaccineDates[vaccineKey],
-                    onDateSelected = { vaccineDates[vaccineKey] = it }
-                )
+            if (selectedVaccine == "Others") {
+                item {
+                    OutlinedTextField(
+                        value = customVaccineName,
+                        onValueChange = { customVaccineName = it },
+                        label = { Text("Enter Vaccine Name") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }
+
+            if (selectedVaccine != null) {
+                item {
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        DatePickerField(
+                            label = "Last Vaccination Date",
+                            selectedDate = lastVaccineDate,
+                            onDateSelected = { lastVaccineDate = it }
+                        )
+                        DatePickerField(
+                            label = "Next Vaccination Date",
+                            selectedDate = nextVaccineDate,
+                            onDateSelected = { nextVaccineDate = it }
+                        )
+                    }
+                }
             }
 
             // Save Button
@@ -247,6 +301,15 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
                     onClick = {
                         if (isValid) {
                             val finalBreed = if (selectedBreed == "Others") otherBreed else selectedBreed
+                            val finalVaccineName = if (selectedVaccine == "Others") customVaccineName else selectedVaccine
+                            
+                            val vaccineMap = mutableMapOf<String, Long?>()
+                            val nextVaccineMap = mutableMapOf<String, Long?>()
+                            if (finalVaccineName != null) {
+                                vaccineMap[finalVaccineName] = lastVaccineDate
+                                nextVaccineMap[finalVaccineName] = nextVaccineDate
+                            }
+
                             viewModel.addAnimal(
                                 name = name,
                                 species = selectedSpecies,
@@ -254,7 +317,10 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
                                 gender = selectedGender,
                                 ageInYears = age.toIntOrNull() ?: 0,
                                 district = selectedDistrict,
-                                lastVaccineDates = vaccineDates.toMap()
+                                notes = notes,
+                                photoUri = null, 
+                                lastVaccineDates = vaccineMap,
+                                nextVaccineDates = nextVaccineMap
                             )
                             navController.popBackStack()
                         }
@@ -273,8 +339,8 @@ fun AddAnimalScreen(navController: NavHostController, viewModel: AnimalViewModel
 }
 
 @Composable
-fun VaccineDatePickerField(
-    vaccineName: String,
+fun DatePickerField(
+    label: String,
     selectedDate: Long?,
     onDateSelected: (Long) -> Unit
 ) {
@@ -293,6 +359,9 @@ fun VaccineDatePickerField(
                     set(Calendar.YEAR, year)
                     set(Calendar.MONTH, month)
                     set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    set(Calendar.HOUR_OF_DAY, 0)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
                 }.timeInMillis
                 onDateSelected(selected)
             },
@@ -302,31 +371,25 @@ fun VaccineDatePickerField(
         ).show()
     }
 
-    // Wrap in Box to capture clicks since OutlinedTextField with readOnly=true 
-    // doesn't always trigger clicks reliably across all versions.
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp)
             .clickable { showDatePicker() }
     ) {
         OutlinedTextField(
             value = if (selectedDate != null) sdf.format(Date(selectedDate)) else "",
             onValueChange = {},
             readOnly = true,
-            enabled = false, // Set to false so the Box click listener works reliably
-            label = { Text(vaccineName) },
+            enabled = false,
+            label = { Text(label) },
             trailingIcon = {
-                Icon(Icons.Default.CalendarMonth, contentDescription = stringResource(R.string.pick_date))
+                Icon(Icons.Default.CalendarMonth, contentDescription = null)
             },
             modifier = Modifier.fillMaxWidth(),
             colors = OutlinedTextFieldDefaults.colors(
                 disabledTextColor = MaterialTheme.colorScheme.onSurface,
                 disabledBorderColor = MaterialTheme.colorScheme.outline,
-                disabledLeadingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         )
     }

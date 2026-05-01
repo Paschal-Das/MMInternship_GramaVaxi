@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Animal::class, Vaccination::class, CampAlert::class], version = 4, exportSchema = false)
+@Database(entities = [Animal::class, Vaccination::class, CampAlert::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun animalDao(): AnimalDao
 
