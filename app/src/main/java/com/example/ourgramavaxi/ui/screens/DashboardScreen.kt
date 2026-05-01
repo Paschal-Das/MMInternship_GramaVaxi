@@ -6,19 +6,55 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.ourgramavaxi.R
+import com.example.ourgramavaxi.viewmodel.AnimalViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen(navController: NavHostController) {
+fun DashboardScreen(navController: NavHostController, viewModel: AnimalViewModel) {
+    val currentLang by viewModel.currentLanguage.collectAsState()
+
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Grama-Vaxi (ಗ್ರಾಮ-ವ್ಯಾಕ್ಸಿ)") }) }
+        topBar = { 
+            TopAppBar(
+                title = { 
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.Pets, 
+                            contentDescription = null, 
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(32.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(stringResource(R.string.app_name))
+                    }
+                },
+                actions = {
+                    TextButton(onClick = { viewModel.toggleLanguage() }) {
+                        Text(
+                            text = if (currentLang == "en") "ಕನ್ನಡ" else "English",
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    IconButton(onClick = { /* Notifications */ }) {
+                        Icon(Icons.Default.Notifications, contentDescription = "Notifications")
+                    }
+                }
+            ) 
+        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -28,43 +64,83 @@ fun DashboardScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Welcome, Farmer!",
+                text = stringResource(R.string.dashboard),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                DashboardCard("Animal Ledger\n(ಪ್ರಾಣಿಗಳ ಪಟ್ಟಿ)", Icons.Default.List, Modifier.weight(1f)) {
-                    navController.navigate("ledger")
+                DashboardCard(
+                    stringResource(R.string.animal_ledger), 
+                    Icons.Default.Pets, 
+                    MaterialTheme.colorScheme.primaryContainer,
+                    Modifier.weight(1f)
+                ) {
+                    navController.navigate("animal_ledger")
                 }
-                DashboardCard("Vaccine Calendar\n(ಲಸಿಕೆ ಕ್ಯಾಲೆಂಡರ್)", Icons.Default.DateRange, Modifier.weight(1f)) {}
+                DashboardCard(
+                    stringResource(R.string.vaccine_calendar), 
+                    Icons.Default.Event, 
+                    MaterialTheme.colorScheme.secondaryContainer,
+                    Modifier.weight(1f)
+                ) {
+                    navController.navigate("vaccine_calendar")
+                }
             }
 
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                DashboardCard("Camp Alerts\n(ಕ್ಯಾಂಪ್ ಅಲರ್ಟ್)", Icons.Default.Notifications, Modifier.weight(1f)) {}
-                DashboardCard("Report Sick\n(ಅನಾರೋಗ್ಯ ವರದಿ)", Icons.Default.Warning, Modifier.weight(1f)) {}
+                DashboardCard(
+                    stringResource(R.string.camp_alerts), 
+                    Icons.Default.Campaign, 
+                    MaterialTheme.colorScheme.tertiaryContainer,
+                    Modifier.weight(1f)
+                ) {
+                    navController.navigate("camp_alerts")
+                }
+                DashboardCard(
+                    stringResource(R.string.report_sick), 
+                    Icons.Default.HealthAndSafety, 
+                    MaterialTheme.colorScheme.errorContainer,
+                    Modifier.weight(1f)
+                ) {
+                    navController.navigate("report_sick")
+                }
             }
         }
     }
 }
 
 @Composable
-fun DashboardCard(title: String, icon: ImageVector, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun DashboardCard(
+    title: String,
+    icon: ImageVector,
+    containerColor: Color,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
     Card(
         modifier = modifier
-            .height(160.dp)
+            .height(140.dp)
             .clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+        colors = CardDefaults.cardColors(containerColor = containerColor)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Icon(icon, contentDescription = null, modifier = Modifier.size(48.dp))
+            Icon(icon, contentDescription = null, modifier = Modifier.size(40.dp))
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = title, fontSize = 16.sp, fontWeight = FontWeight.Medium, modifier = Modifier.padding(horizontal = 8.dp))
+            Text(
+                text = title,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                lineHeight = 20.sp
+            )
         }
     }
 }

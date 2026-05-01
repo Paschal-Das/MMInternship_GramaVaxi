@@ -1,3 +1,72 @@
 <resources>
     <string name="app_name">OurGramaVaxi</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="animal_ledger">Animal Ledger</string>
+    <string name="vaccine_calendar">Vaccine Calendar</string>
+    <string name="camp_alerts">Camp Alerts</string>
+    <string name="report_sick">Report Sickness</string>
+
+    <!-- Animal Registration -->
+    <string name="add_animal">Add Animal</string>
+    <string name="animal_name">Animal Name/ID</string>
+    <string name="species">Species</string>
+    <string name="breed">Breed</string>
+    <string name="gender">Gender</string>
+    <string name="age_years">Age (Years)</string>
+    <string name="last_vaccination">Last Vaccination Date (Optional)</string>
+    <string name="save">Save</string>
+    <string name="sheep">Sheep</string>
+    <string name="goat">Goat</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="others">Others</string>
+    <string name="select_breed">Select Breed</string>
+    <string name="deccani">Deccani</string>
+    <string name="bellary">Bellary</string>
+    <string name="bannur">Bannur</string>
+    <string name="osmanabadi">Osmanabadi</string>
+    <string name="bidri">Bidri</string>
+    <string name="malnad_gidda">Malnad Gidda</string>
+    <string name="beetal">Beetal</string>
+    <string name="kodagu">Kodagu</string>
+
+    <!-- Vaccines -->
+    <string name="fmd_vaccine">FMD Vaccine</string>
+    <string name="ppr_vaccine">PPR Vaccine</string>
+    <string name="pox_vaccine">Pox Vaccine</string>
+    <string name="hs_vaccine">HS Vaccine</string>
+    <string name="bluetongue_vaccine">Bluetongue Vaccine</string>
+
+    <!-- Messages -->
+    <string name="animal_saved">Animal saved successfully</string>
+    <string name="fill_required">Please fill all required fields</string>
+    <string name="select_district">Select District</string>
+    <string name="mandya">Mandya</string>
+    <string name="hassan">Hassan</string>
+    <string name="chamarajanagar">Chamarajanagar</string>
+    <string name="mysuru">Mysuru</string>
+    <string name="tumakuru">Tumakuru</string>
+    <string name="bengaluru_rural">Bengaluru Rural</string>
+    <string name="chikkaballapura">Chikkaballapura</string>
+    <string name="kolar">Kolar</string>
+
+    <string name="enter_breed_name">Enter Breed Name</string>
+    <string name="enter_age_years">Enter age in years</string>
+    <string name="vaccination_history">Vaccination History</string>
+    <string name="pick_date">Pick Date</string>
+    <string name="initial_checkup">Initial Health Checkup</string>
+    <string name="enterotoxemia">Enterotoxemia</string>
+    <string name="ccpp_goat">CCPP (Goat)</string>
+    <string name="anthrax_vaccine">Anthrax Vaccine</string>
+    <string name="due_on">Due on: %1$s</string>
+    <string name="given_on">Given on: %1$s</string>
+    <string name="upcoming_doses">Upcoming Doses</string>
+    <string name="no_upcoming">No upcoming vaccinations scheduled.</string>
+    <string name="no_history">No history recorded.</string>
+    <string name="no_animals">No animals registered yet.\nTap + to add one.</string>
+    <string name="delete_animal">Delete Animal</string>
+    <string name="delete_confirm">Are you sure you want to remove %1$s from the ledger?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="due">Due</string>
 </resources>
