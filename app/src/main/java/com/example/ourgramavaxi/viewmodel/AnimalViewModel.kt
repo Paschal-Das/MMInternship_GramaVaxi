@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.example.ourgramavaxi.R
 import com.example.ourgramavaxi.data.*
 import com.example.ourgramavaxi.worker.VaccineWorker
 import kotlinx.coroutines.flow.Flow
@@ -142,22 +143,22 @@ class AnimalViewModel(application: Application, private val animalDao: AnimalDao
             calendar.set(Calendar.MONTH, Calendar.APRIL)
             calendar.set(Calendar.DAY_OF_MONTH, 15)
             animalDao.insertCampAlert(CampAlert(
-                title = "FMD Vaccination Camp",
-                description = "Government organized FMD vaccination drive for all livestock in the village.",
-                location = "Grama Panchayat Office",
+                titleResId = R.string.fmd_camp_title,
+                descResId = R.string.fmd_camp_desc,
+                locationResId = R.string.panchayat_office,
                 date = calendar.timeInMillis,
-                type = "Vaccination Camp"
+                typeResId = R.string.vaccination_camp_type
             ))
 
             // HS Camp (Pre-monsoon May)
             calendar.set(Calendar.MONTH, Calendar.MAY)
             calendar.set(Calendar.DAY_OF_MONTH, 10)
             animalDao.insertCampAlert(CampAlert(
-                title = "HS & BQ Prevention Drive",
-                description = "Protect your sheep and goats from Haemorrhagic Septicaemia before monsoon starts.",
-                location = "Community Hall",
+                titleResId = R.string.hs_camp_title,
+                descResId = R.string.hs_camp_desc,
+                locationResId = R.string.community_hall,
                 date = calendar.timeInMillis,
-                type = "Health Drive"
+                typeResId = R.string.health_drive_type
             ))
         }
     }

@@ -69,4 +69,17 @@
     <string name="delete">ಅಳಿಸಿ</string>
     <string name="cancel">ರದ್ದುಮಾಡಿ</string>
     <string name="due">ಬಾಕಿ</string>
+    <string name="no_alerts">ಹತ್ತಿರದಲ್ಲಿ ಯಾವುದೇ ಸಕ್ರಿಯ ಆರೋಗ್ಯ ಶಿಬಿರಗಳಿಲ್ಲ.</string>
+    <string name="register_now">ಈಗಲೇ ನೋಂದಾಯಿಸಿ</string>
+    <string name="cancel_registration">ನೋಂದಣಿ ರದ್ದುಮಾಡಿ</string>
+    <string name="registered_msg">%1$s ಗಾಗಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ!</string>
+    <string name="back">ಹಿಂದಕ್ಕೆ</string>
+    <string name="fmd_camp_title">ಎಫ್.ಎಮ್.ಡಿ ಲಸಿಕಾ ಶಿಬಿರ</string>
+    <string name="fmd_camp_desc">ಗ್ರಾಮದ ಎಲ್ಲಾ ಜಾನುವಾರುಗಳಿಗೆ ಸರ್ಕಾರದಿಂದ ಆಯೋಜಿಸಲಾದ ಎಫ್.ಎಮ್.ಡಿ ಲಸಿಕಾ ಅಭಿಯಾನ.</string>
+    <string name="panchayat_office">ಗ್ರಾಮ ಪಂಚಾಯತ್ ಕಚೇರಿ</string>
+    <string name="hs_camp_title">ಹೆಚ್.ಎಸ್ ಮತ್ತು ಬಿ.ಕ್ಯೂ ತಡೆಗಟ್ಟುವಿಕೆ ಅಭಿಯಾನ</string>
+    <string name="hs_camp_desc">ಮುಂಗಾರು ಆರಂಭವಾಗುವ ಮೊದಲು ನಿಮ್ಮ ಕುರಿ ಮತ್ತು ಮೇಕೆಗಳನ್ನು ಬಾವು ರೋಗದಿಂದ ರಕ್ಷಿಸಿ.</string>
+    <string name="community_hall">ಸಮುದಾಯ ಭವನ</string>
+    <string name="vaccination_camp_type">ಲಸಿಕಾ ಶಿಬಿರ</string>
+    <string name="health_drive_type">ಆರೋಗ್ಯ ಅಭಿಯಾನ</string>
 </resources>

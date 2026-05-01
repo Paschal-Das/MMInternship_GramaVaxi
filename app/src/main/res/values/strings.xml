@@ -69,4 +69,17 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="due">Due</string>
+    <string name="no_alerts">No active health camps nearby.</string>
+    <string name="register_now">Register Now</string>
+    <string name="cancel_registration">Cancel Registration</string>
+    <string name="registered_msg">Registered for %1$s!</string>
+    <string name="back">Back</string>
+    <string name="fmd_camp_title">FMD Vaccination Camp</string>
+    <string name="fmd_camp_desc">Government organized FMD vaccination drive for all livestock in the village.</string>
+    <string name="panchayat_office">Grama Panchayat Office</string>
+    <string name="hs_camp_title">HS &amp; BQ Prevention Drive</string>
+    <string name="hs_camp_desc">Protect your sheep and goats from Haemorrhagic Septicaemia before monsoon starts.</string>
+    <string name="community_hall">Community Hall</string>
+    <string name="vaccination_camp_type">Vaccination Camp</string>
+    <string name="health_drive_type">Health Drive</string>
 </resources>

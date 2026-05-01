@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.compose.ui.res.stringResource
+import com.example.ourgramavaxi.R
 import com.example.ourgramavaxi.viewmodel.AnimalViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -32,10 +34,10 @@ fun CampAlertsScreen(navController: NavHostController, viewModel: AnimalViewMode
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         topBar = {
             TopAppBar(
-                title = { Text("Camp Alerts (ಕ್ಯಾಂಪ್ ಅಲರ್ಟ್)") },
+                title = { Text(stringResource(R.string.camp_alerts)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 }
             )
@@ -51,7 +53,7 @@ fun CampAlertsScreen(navController: NavHostController, viewModel: AnimalViewMode
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(64.dp), tint = MaterialTheme.colorScheme.outline)
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text(text = "No active health camps nearby.", color = MaterialTheme.colorScheme.outline)
+                    Text(text = stringResource(R.string.no_alerts), color = MaterialTheme.colorScheme.outline)
                 }
             }
         } else {
@@ -76,29 +78,29 @@ fun CampAlertsScreen(navController: NavHostController, viewModel: AnimalViewMode
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        text = alert.title,
+                                        text = stringResource(alert.titleResId),
                                         style = MaterialTheme.typography.titleLarge,
                                         fontWeight = FontWeight.Bold,
                                         color = if (isRegistered) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
                                     )
                                     Text(
-                                        text = alert.type,
+                                        text = stringResource(alert.typeResId),
                                         style = MaterialTheme.typography.labelMedium,
                                         color = MaterialTheme.colorScheme.primary
                                     )
                                 }
                                 if (isRegistered) {
-                                    Icon(Icons.Default.CheckCircle, contentDescription = "Registered", tint = MaterialTheme.colorScheme.primary)
+                                    Icon(Icons.Default.CheckCircle, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                                 }
                             }
                             
                             Spacer(modifier = Modifier.height(8.dp))
-                            Text(text = alert.description, style = MaterialTheme.typography.bodyMedium)
+                            Text(text = stringResource(alert.descResId), style = MaterialTheme.typography.bodyMedium)
                             Spacer(modifier = Modifier.height(12.dp))
                             
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
-                                    text = "📍 ${alert.location}",
+                                    text = "📍 ${stringResource(alert.locationResId)}",
                                     style = MaterialTheme.typography.bodySmall
                                 )
                                 Spacer(modifier = Modifier.weight(1f))
@@ -111,12 +113,14 @@ fun CampAlertsScreen(navController: NavHostController, viewModel: AnimalViewMode
                             
                             Spacer(modifier = Modifier.height(16.dp))
                             
+                            val alertTitle = stringResource(alert.titleResId)
+                            val registeredMsg = stringResource(R.string.registered_msg, alertTitle)
                             Button(
                                 onClick = { 
                                     isRegistered = !isRegistered
                                     if (isRegistered) {
                                         scope.launch {
-                                            snackbarHostState.showSnackbar("Registered for ${alert.title}!")
+                                            snackbarHostState.showSnackbar(registeredMsg)
                                         }
                                     }
                                 },
@@ -125,7 +129,7 @@ fun CampAlertsScreen(navController: NavHostController, viewModel: AnimalViewMode
                                     containerColor = if (isRegistered) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.primary
                                 )
                             ) {
-                                Text(if (isRegistered) "Cancel Registration (ನೋಂದಣಿ ರದ್ದುಮಾಡಿ)" else "Register Now (ಈಗಲೇ ನೋಂದಾಯಿಸಿ)")
+                                Text(if (isRegistered) stringResource(R.string.cancel_registration) else stringResource(R.string.register_now))
                             }
                         }
                     }
@@ -134,3 +138,4 @@ fun CampAlertsScreen(navController: NavHostController, viewModel: AnimalViewMode
         }
     }
 }
+
