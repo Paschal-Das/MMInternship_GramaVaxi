@@ -1,55 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OurGramaVaxi</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="animal_ledger">Animal Ledger</string>
-    <string name="vaccine_calendar">Vaccine Calendar</string>
-    <string name="camp_alerts">Camp Alerts</string>
-    <string name="report_sick">Report Sickness</string>
 
-    <!-- Animal Registration -->
+    <!-- UI Strings -->
     <string name="add_animal">Add Animal</string>
-    <string name="animal_name">Animal Name/ID</string>
+    <string name="back">Back</string>
+    <string name="animal_name">Animal Name</string>
     <string name="species">Species</string>
-    <string name="breed">Breed</string>
-    <string name="gender">Gender</string>
-    <string name="age_years">Age (Years)</string>
-    <string name="last_vaccination">Last Vaccination Date (Optional)</string>
-    <string name="save">Save</string>
     <string name="sheep">Sheep</string>
     <string name="goat">Goat</string>
+    <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="others">Others</string>
     <string name="select_breed">Select Breed</string>
-    <string name="deccani">Deccani</string>
-    <string name="bellary">Bellary</string>
-    <string name="bannur">Bannur</string>
-    <string name="osmanabadi">Osmanabadi</string>
-    <string name="bidri">Bidri</string>
-    <string name="malnad_gidda">Malnad Gidda</string>
-    <string name="beetal">Beetal</string>
-    <string name="kodagu">Kodagu (Coorg)</string>
-
-    <!-- Vaccines -->
-    <string name="fmd_vaccine">FMD Vaccine</string>
-    <string name="ppr_vaccine">PPR Vaccine</string>
-    <string name="pox_vaccine">Pox Vaccine</string>
-    <string name="hs_vaccine">HS Vaccine</string>
-    <string name="bluetongue_vaccine">Bluetongue Vaccine</string>
-
-    <!-- Messages -->
-    <string name="animal_saved">Animal saved successfully</string>
-    <string name="fill_required">Please fill all required fields</string>
+    <string name="enter_breed_name">Enter Breed Name</string>
+    <string name="age_years">Age (Years)</string>
     <string name="select_district">Select District</string>
+    <string name="notes_description">Notes / Description</string>
+    <string name="vaccination_history">Vaccination History</string>
+    <string name="select_vaccine_optional">Select Vaccine (Optional)</string>
+    <string name="enter_vaccine_name">Enter Vaccine Name</string>
+    <string name="last_vaccination_date">Last Vaccination Date</string>
+    <string name="next_vaccination_date">Next Vaccination Date</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="upcoming_doses">Upcoming Doses</string>
+    <string name="no_upcoming">No upcoming vaccinations</string>
+    <string name="no_history">No vaccination history recorded</string>
+    <string name="breed">Breed</string>
+    <string name="given_on">Given on: %s</string>
+    <string name="due_on">Due on: %s</string>
+    <string name="animal_ledger">Animal Ledger</string>
+    <string name="no_animals">No animals added yet</string>
+    <string name="delete_animal">Delete Animal</string>
+    <string name="delete_confirm">Are you sure you want to delete this animal?</string>
+    <string name="delete">Delete</string>
+    <string name="edit_animal">Edit Animal</string>
+    <string name="due">DUE</string>
+    <string name="camp_alerts">Camp Alerts</string>
+    <string name="no_alerts">No active vaccination camps</string>
+    <string name="registered_msg">Registered for this camp</string>
+    <string name="cancel_registration">Cancel Registration</string>
+    <string name="register_now">Register Now</string>
+    <string name="add_camp_alert">Add Camp Alert</string>
+    <string name="tap_plus_to_add_camp">Tap + to add a new camp alert</string>
+    <string name="camp_title">Camp Title</string>
+    <string name="camp_location">Location</string>
+    <string name="camp_type">Type</string>
+    <string name="camp_description">Description</string>
+    <string name="camp_date">Date</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="vaccine_calendar">Vaccine Calendar</string>
+    <string name="report_sick">Report Sick Animal</string>
+    <string name="alert_sent_message">Emergency alert sent to local veterinarian!</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="select_animal_label">Select Animal</string>
+    <string name="select_label">Select</string>
+    <string name="known_disease_label">Known Disease? (If any)</string>
+    <string name="select_if_known">Select if known</string>
+    <string name="enter_disease_name">Enter Disease Name</string>
+    <string name="severity_label">Severity</string>
+    <string name="symptoms_description_label">Symptoms / Description</string>
+    <string name="symptoms_placeholder">Describe how the animal is acting...</string>
+    <string name="send_emergency_alert">Send Emergency Alert</string>
+    <string name="active_campaign_window">Active Campaign Window</string>
+    <string name="govt_prioritizing">Government is prioritizing %s in this season.</string>
+    <string name="animal_schedule">Animal Vaccination Schedule</string>
+    <string name="no_vaccinations_scheduled">No vaccinations scheduled</string>
+    <string name="animal_label">Animal: %s</string>
+    <string name="date_label">Date: %s</string>
+    <string name="initial_checkup">Initial Checkup</string>
+    <string name="animal_photo">Animal Photo</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="add_photo">Add Photo</string>
+
+    <!-- Districts -->
     <string name="bagalkot">Bagalkot</string>
-    <string name="ballari">Ballari (Bellary)</string>
-    <string name="belagavi">Belagavi (Belgaum)</string>
+    <string name="ballari">Ballari</string>
+    <string name="belagavi">Belagavi</string>
     <string name="bengaluru_rural">Bengaluru Rural</string>
     <string name="bengaluru_urban">Bengaluru Urban</string>
     <string name="bidar">Bidar</string>
     <string name="chamarajanagar">Chamarajanagar</string>
     <string name="chikkaballapur">Chikkaballapur</string>
-    <string name="chikkamagaluru">Chikkamagaluru (Chikmagalur)</string>
+    <string name="chikkamagaluru">Chikkamagaluru</string>
     <string name="chitradurga">Chitradurga</string>
     <string name="dakshina_kannada">Dakshina Kannada</string>
     <string name="davanagere">Davanagere</string>
@@ -57,61 +93,330 @@
     <string name="gadag">Gadag</string>
     <string name="hassan">Hassan</string>
     <string name="haveri">Haveri</string>
-    <string name="kalaburagi">Kalaburagi (Gulbarga)</string>
-    <string name="kodagu">Kodagu (Coorg)</string>
+    <string name="kalaburagi">Kalaburagi</string>
+    <string name="kodagu">Kodagu</string>
     <string name="kolar">Kolar</string>
     <string name="koppal">Koppal</string>
     <string name="mandya">Mandya</string>
-    <string name="mysuru">Mysuru (Mysore)</string>
+    <string name="mysuru">Mysuru</string>
     <string name="raichur">Raichur</string>
     <string name="ramanagara">Ramanagara</string>
-    <string name="shivamogga">Shivamogga (Shimoga)</string>
-    <string name="tumakuru">Tumakuru (Tumkur)</string>
+    <string name="shivamogga">Shivamogga</string>
+    <string name="tumakuru">Tumakuru</string>
     <string name="udupi">Udupi</string>
-    <string name="uttara_kannada">Uttara Kannada (Karwar)</string>
-    <string name="vijayapura">Vijayapura (Bijapur)</string>
+    <string name="uttara_kannada">Uttara Kannada</string>
+    <string name="vijayapura">Vijayapura</string>
     <string name="yadgir">Yadgir</string>
     <string name="vijayanagara">Vijayanagara</string>
 
-    <string name="enter_breed_name">Enter Breed Name</string>
-    <string name="enter_age_years">Enter age in years</string>
-    <string name="vaccination_history">Vaccination History</string>
-    <string name="pick_date">Pick Date</string>
-    <string name="initial_checkup">Initial Health Checkup</string>
+    <!-- Breeds -->
+    <string name="deccani">Deccani</string>
+    <string name="bellary">Bellary</string>
+    <string name="bannur">Bannur</string>
+    <string name="others">Others</string>
+    <string name="osmanabadi">Osmanabadi</string>
+    <string name="bidri">Bidri</string>
+    <string name="malnad_gidda">Malnad Gidda</string>
+    <string name="beetal">Beetal</string>
+    <string name="kodagu_breed">Kodagu Breed</string>
+
+    <!-- Vaccines -->
+    <string name="fmd_vaccine">FMD Vaccine</string>
+    <string name="ppr_vaccine">PPR Vaccine</string>
+    <string name="pox_vaccine">Pox Vaccine</string>
+    <string name="hs_vaccine">HS Vaccine</string>
+    <string name="bluetongue_vaccine">Bluetongue Vaccine</string>
     <string name="enterotoxemia">Enterotoxemia</string>
-    <string name="ccpp_goat">CCPP (Goat)</string>
+    <string name="ccpp_vaccine">CCPP Vaccine (Goat)</string>
     <string name="anthrax_vaccine">Anthrax Vaccine</string>
-    <string name="due_on">Due on: %1$s</string>
-    <string name="given_on">Given on: %1$s</string>
-    <string name="upcoming_doses">Upcoming Doses</string>
-    <string name="no_upcoming">No upcoming vaccinations scheduled.</string>
-    <string name="no_history">No history recorded.</string>
-    <string name="no_animals">No animals registered yet.\nTap + to add one.</string>
-    <string name="delete_animal">Delete Animal</string>
-    <string name="delete_confirm">Are you sure you want to remove %1$s from the ledger?</string>
-    <string name="delete">Delete</string>
-    <string name="cancel">Cancel</string>
-    <string name="due">Due</string>
-    <string name="no_alerts">No active health camps nearby.</string>
-    <string name="register_now">Register Now</string>
-    <string name="cancel_registration">Cancel Registration</string>
-    <string name="registered_msg">Registered for %1$s!</string>
-    <string name="notes_description">Notes / Description</string>
-    <string name="active_campaign_window">Active Campaign Window</string>
-    <string name="govt_prioritizing">Karnataka Govt. is currently prioritizing: </string>
-    <string name="animal_schedule">Your Animal Schedule</string>
-    <string name="no_vaccinations_scheduled">No vaccinations scheduled.</string>
-    <string name="animal_label">Animal: </string>
-    <string name="date_label">Date: </string>
-    <string name="add_photo">Add Photo</string>
-    <string name="change_photo">Change Photo</string>
-    <string name="back">Back</string>
-    <string name="fmd_camp_title">FMD Vaccination Camp</string>
-    <string name="fmd_camp_desc">Government organized FMD vaccination drive for all livestock in the village.</string>
-    <string name="panchayat_office">Grama Panchayat Office</string>
-    <string name="hs_camp_title">HS &amp; BQ Prevention Drive</string>
-    <string name="hs_camp_desc">Protect your sheep and goats from Haemorrhagic Septicaemia before monsoon starts.</string>
-    <string name="community_hall">Community Hall</string>
-    <string name="vaccination_camp_type">Vaccination Camp</string>
-    <string name="health_drive_type">Health Drive</string>
+
+    <!-- GENERAL INFORMATION SCREEN -->
+    <string name="general_information">General Information</string>
+
+    <!-- Section Titles -->
+    <string name="info_what_is_vaccine">What is a Vaccine?</string>
+    <string name="info_types_of_vaccines">Types of Vaccines</string>
+    <string name="info_advantages">Advantages of Vaccination</string>
+    <string name="info_important_points">Important Points During Vaccination</string>
+    <string name="info_vaccine_failure">Causes of Vaccine Failure</string>
+    <string name="info_ppr_disease">PPR (Peste des Petits Ruminants)</string>
+    <string name="info_sheep_pox_disease">Sheep Pox</string>
+    <string name="info_goat_pox_disease">Goat Pox</string>
+    <string name="info_fmd_disease">FMD (Foot and Mouth Disease)</string>
+    <string name="info_hs_disease">HS (Haemorrhagic Septicaemia)</string>
+    <string name="info_anthrax_disease">Anthrax</string>
+    <string name="info_enterotoxemia_disease">Enterotoxaemia</string>
+    <string name="info_when_not_to_vaccinate">When NOT to Vaccinate</string>
+
+    <!-- Section Content -->
+    <string name="info_what_is_vaccine_content">A vaccine is a biological product which induces immunity against a particular disease by inoculating agent(s) that resemble a disease-causing microorganism(s) and is often made from weakened pathogens, its toxins or one of the surface proteins.
+
+A vaccination is the process of injection of a killed or weakened organism or its components like toxins or surface proteins that produce specific immunity in the body against that organism.</string>
+
+    <string name="info_types_of_vaccines_content">1. INACTIVATED VACCINE (Killed Vaccine)
+Consists of pathogen(s) which are inactivated or killed by physical or chemical methods so that organisms totally lose their pathogenicity and virulence.
+
+2. LIVE VACCINES
+Contain live organisms that cause diseases, modified either in nature or in laboratory so that they lose ability to cause disease but retain ability to elicit immune response in the body.
+
+3. RECOMBINANT VACCINES
+Made using recombinant DNA technology. Have characteristics of inactivated or attenuated vaccines and generally consist of expressed proteins.</string>
+
+    <string name="info_advantages_content">✓ Protects animals against particular diseases
+✓ Prevents epidemics and pandemics of diseases
+✓ Prevents spread of communicable diseases to other animals and humans
+✓ Prevents cost incurred in treatment of infected animals
+✓ Prevents certain animal diseases having food borne spread potential
+✓ Ensures herd health and productivity</string>
+
+    <string name="info_important_points_content">1. Only healthy animals should be vaccinated. Weak, pregnant, or immuno-compromised animals should NOT be vaccinated.
+
+2. Deworming before vaccination is always preferred for effective vaccination.
+
+3. Vaccination should be done at least 20-30 days before probable time of disease spread.
+
+4. Vaccination should be done with vaccine maintained under proper cold chain.
+
+5. All animals in a herd should be vaccinated to achieve desired level of herd immunity.
+
+6. Avoid vaccination in the last trimester of pregnancy.
+
+7. Always maintain animal health card to record vaccination history.
+
+8. Use separate syringe and needle for each animal. Safely dispose used needles and syringes.
+
+9. Vaccinate during cool parts of the day (early morning/late evening).
+
+10. Do not vaccinate animals under stress (transport, market, extreme weather).</string>
+
+    <string name="info_vaccine_failure_content">1. IMPROPER ADMINISTRATION
+Vaccination not done at appropriate time, dose, and route.
+
+2. IMPROPER MIXING OF VACCINES
+Vaccine not properly mixed before use.
+
+3. IMPROPER STORAGE
+Vaccine effectiveness reduces if not stored at temperature specified by manufacturer.
+
+4. POOR QUALITY OF VACCINE
+Sometimes poor quality vaccines may lead to vaccine failure.
+
+5. IMPROPER TIMING
+Too early vaccination leads to maternal antibody interference. Too late vaccination may not be effective if disease already present.
+
+6. ANIMAL FACTORS
+Environmental stress, poor nutrition, inappropriate age, and transportation stress may lead to vaccine failure.
+
+7. LACK OF HERD IMMUNITY
+If majority of animals (less than 80%) in herd are not immunized, herd immunity reduces and vaccine failure may occur.</string>
+
+    <string name="info_ppr_disease_content">DISEASE: Peste des Petits Ruminants (PPR)
+Causative Agent: PPR virus / Morbillivirus
+
+VACCINE DETAILS
+Types: Live attenuated cell culture PPR vaccine (freeze-dried)
+Serotype: Sungri/96 strain
+
+VACCINATION PROTOCOL
+Age to vaccinate: 4 months old
+Number of doses: Single dose
+Duration of immunity: At least 3 years
+Route: Subcutaneous injection
+Booster: After 3 years only
+
+SPECIAL NOTES
+- One of the most important vaccines for goats
+- Protects against highly contagious disease
+- Single lifetime dose provides long-lasting immunity</string>
+
+    <string name="info_sheep_pox_disease_content">DISEASE: Sheep Pox
+Causative Agent: Sheep pox virus / Capripox virus
+
+VACCINE DETAILS
+Types: Attenuated virus in freeze-dried vaccine
+Serotypes: Srinagar Strain, Romanian Fannar Strain, Ranipet strain
+
+VACCINATION PROTOCOL
+Age to vaccinate: 4 months and above
+Frequency: At least once a year
+Route: Subcutaneous injection
+Best time: Before disease season (Feb-March)
+
+SPECIAL NOTES
+- FOR SHEEP ONLY (not for goats)
+- Annual vaccination recommended for complete protection
+- Important during cooler months when disease risk is higher</string>
+
+    <string name="info_goat_pox_disease_content">DISEASE: Goat Pox
+Causative Agent: Goat pox virus / Capripox virus
+
+VACCINE DETAILS
+Types: Live attenuated cell culture Goat-Pox vaccine
+Serotype: Uttarkashi strain
+
+VACCINATION PROTOCOL
+Age to vaccinate: 4 months or older
+Frequency: Annual vaccination
+Route: Subcutaneous injection
+Timing: After kidding season or before breeding season
+
+SPECIAL NOTES
+- FOR GOATS ONLY (not for sheep)
+- Protects against high mortality disease
+- Annual booster recommended for continued immunity</string>
+
+    <string name="info_fmd_disease_content">DISEASE: Foot and Mouth Disease (FMD)
+Causative Agent: FMD virus / Apthovirus
+
+VACCINE DETAILS
+Types: Inactivated tissue culture aluminium hydroxide gel adsorbed vaccine
+        Inactivated tissue culture oil adjuvant vaccine
+        Combined vaccines
+Serotypes: FMDV serotypes O, A, and Asia 1
+
+VACCINATION PROTOCOL
+Age to vaccinate: First dose at 4 months old
+Primary course: First dose + booster at 2-4 weeks
+Frequency: Booster every 6 months
+Standard schedule: March and October
+Route: Intramuscular injection
+
+SPECIAL NOTES
+- Requires regular boosters for continued immunity
+- Fixed schedule (March &amp; October) follows India\'s vaccination calendar
+- Applies to both sheep and goats</string>
+
+    <string name="info_hs_disease_content">DISEASE: Haemorrhagic Septicaemia (HS)
+Causative Agent: Pasteurella multocida (Serotype B:2)
+
+VACCINE DETAILS
+Types: Inactivated aluminium hydroxide gel adsorbed vaccine
+        Inactivated alum precipitated vaccine
+        Inactivated oil adjuvant vaccine
+Serotype: P. multocida P52
+
+VACCINATION PROTOCOL
+Age to vaccinate: 6 months and above
+Frequency: Annual vaccination
+Best time: Before monsoon (May-June)
+Route: Subcutaneous injection
+
+SPECIAL NOTES
+- Pre-monsoon vaccination is crucial as disease spreads during rains
+- Annual booster provides one year of protection
+- Protects both sheep and goats
+- Part of important herd immunity program</string>
+
+    <string name="info_anthrax_disease_content">DISEASE: Anthrax
+Causative Agent: Bacillus anthracis
+
+VACCINE DETAILS
+Types: Anthrax live spore vaccine
+Serotypes: Bacillus anthracis Sterne strain (34 F₂)
+
+VACCINATION PROTOCOL
+Age to vaccinate: 6 months old
+Frequency: Annual vaccination
+Best time: Before monsoon (July-August)
+Dose: Not less than 5.0 million spores per dose
+Route: Subcutaneous injection
+
+SPECIAL NOTES
+- Only recommended in Anthrax enzootic areas
+- In Karnataka: Priority zones are Chamarajanagar, Mandya, Mysuru districts
+- Annual booster essential in high-risk areas
+- More critical in these specific regions</string>
+
+    <string name="info_enterotoxemia_disease_content">DISEASE: Enterotoxaemia (ET)
+Causative Agent: Clostridium perfringens type D
+
+VACCINE DETAILS
+Types: Formalin inactivated cultures with epsilon toxoid adjuvantated with aluminium hydroxide gel
+Serotype: Clostridium perfringens Type D
+
+VACCINATION PROTOCOL
+Age to vaccinate: 4 months old (if dam vaccinated) OR 1 week old (if dam unvaccinated)
+Booster: 15 days after primary vaccination
+Annual booster: Before monsoon
+Route: Subcutaneous injection
+
+SPECIAL NOTES
+- Dam\'s vaccination status determines starting age
+- Requires booster 15 days after primary dose
+- Annual vaccination recommended
+- Protects both sheep and goats
+- Important for young animals</string>
+
+    <string name="info_when_not_to_vaccinate_content">❌ DO NOT VACCINATE IF:
+
+1. ANIMAL IS ILL
+- Animal shows fever (temperature > 39°C)
+- Animal shows clinical signs of any disease
+- Animal appears weak or lethargic
+
+2. ANIMAL IS PREGNANT
+- Avoid live vaccines in last trimester of pregnancy
+- Inactivated vaccines can be given with caution
+
+3. ANIMAL IS MALNOURISHED
+- Poor nutritional status reduces vaccine effectiveness
+- Wait until animal recovers nutritionally
+
+4. ANIMAL IS IMMUNOCOMPROMISED
+- Recent concurrent illness
+- Ongoing treatment that suppresses immunity
+
+5. RECENT MEDICATION
+- Antiparasitic drugs: Wait 1 week before vaccination
+- Antibiotics: Avoid during vaccination period
+
+6. STRESS CONDITIONS
+- After transport/market exposure
+- During extreme weather
+- During breeding/kidding season (except specific vaccines)
+
+7. INADEQUATE COLD CHAIN
+- Vaccine shows signs of damage
+- Temperature exposure breaks cold chain
+- Never re-freeze a thawed vaccine
+
+ALWAYS CONSULT LOCAL VETERINARIAN
+Contact your veterinary officer for specific advice on your animals.</string>
+
+    <!-- Source Attribution -->
+    <string name="info_source_title">Information Source</string>
+    <string name="info_source_credit">Data based on: Ministry of Animal Husbandry (India), Indian Council of Agricultural Research (ICAR), Karnataka State Animal Husbandry Department, and OIE (World Organization for Animal Health). Always consult local veterinarian for livestock health decisions.</string>
+
+    <!-- About App -->
+    <string name="info_about_app">About Grama-Vaxi</string>
+    <string name="info_about_app_content">ABOUT GRAMA-VAXI
+Version: 1.0
+Release Date: 2026
+
+Grama-Vaxi is a livestock health alert application designed to help farmers in rural Karnataka maintain vaccination records for their sheep and goats.
+
+FEATURES
+✓ Animal Health Card with vaccination tracking
+✓ Automatic vaccine reminder notifications
+✓ Government camp alert system
+✓ Disease reporting to local veterinarians
+✓ Comprehensive vaccination information
+✓ Bilingual interface (English &amp; Kannada)
+
+MISSION
+To improve livestock health and prevent disease outbreaks in rural villages through timely vaccination reminders and health digitization.
+
+COPYRIGHT &amp; CREDITS
+© 2026 Grama-Vaxi. All rights reserved.
+
+Data compiled from:
+- Ministry of Animal Husbandry, Government of India
+- Indian Council of Agricultural Research (ICAR)
+- Karnataka State Animal Husbandry Department
+- World Organization for Animal Health (OIE)
+
+DISCLAIMER
+This application is for informational purposes only. Always consult with qualified veterinarians for livestock health decisions.
+
+App developed with the goal of supporting rural animal husbandry.</string>
 </resources>

@@ -5,7 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Animal::class, Vaccination::class, CampAlert::class], version = 5, exportSchema = false)
+// ✅ Bumped version from 5 to 6 because CampAlert structure changed
+@Database(entities = [Animal::class, Vaccination::class, CampAlert::class], version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun animalDao(): AnimalDao
 
@@ -20,8 +21,8 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "grama_vaxi_database"
                 )
-                .fallbackToDestructiveMigration()
-                .build()
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

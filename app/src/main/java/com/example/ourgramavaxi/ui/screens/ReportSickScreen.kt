@@ -25,13 +25,19 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
     var selectedDisease by remember { mutableStateOf("") }
     var otherDisease by remember { mutableStateOf("") }
     var severity by remember { mutableStateOf("Medium") }
-    
+
     var animalExpanded by remember { mutableStateOf(false) }
     var diseaseExpanded by remember { mutableStateOf(false) }
-    
+
     val animals by viewModel.allAnimals.collectAsState(initial = emptyList())
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+
+    // BUG 5 FIX: Read all display strings ONCE here so they're available inside callbacks
+    val alertSentMsg = stringResource(R.string.alert_sent_message)
+    val lowLabel = stringResource(R.string.low)
+    val mediumLabel = stringResource(R.string.medium)
+    val highLabel = stringResource(R.string.high)
 
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -40,7 +46,7 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
                 title = { Text(stringResource(R.string.report_sick)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 }
             )
@@ -55,13 +61,15 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
         ) {
             // Animal Selection
             item {
-                Text("Select Animal (ಪ್ರಾಣಿಯನ್ನು ಆರಿಸಿ)", fontWeight = FontWeight.Bold)
+                // BUG 5 FIX: Use stringResource instead of hardcoded "Select Animal (ಪ್ರಾಣಿಯನ್ನು ಆರಿಸಿ)"
+                Text(stringResource(R.string.select_animal_label), fontWeight = FontWeight.Bold)
                 ExposedDropdownMenuBox(
                     expanded = animalExpanded,
                     onExpandedChange = { animalExpanded = !animalExpanded }
                 ) {
                     OutlinedTextField(
-                        value = selectedAnimal?.name ?: "Select",
+                        // BUG 5 FIX: Use stringResource instead of hardcoded "Select"
+                        value = selectedAnimal?.name ?: stringResource(R.string.select_label),
                         onValueChange = {},
                         readOnly = true,
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = animalExpanded) },
@@ -86,13 +94,15 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
 
             // Disease Selection
             item {
-                Text("Known Disease? (ರೋಗದ ಬಗ್ಗೆ ಗೊತ್ತಿದೆಯೇ?)", fontWeight = FontWeight.Bold)
+                // BUG 5 FIX: Use stringResource instead of hardcoded "Known Disease? ..."
+                Text(stringResource(R.string.known_disease_label), fontWeight = FontWeight.Bold)
                 ExposedDropdownMenuBox(
                     expanded = diseaseExpanded,
                     onExpandedChange = { diseaseExpanded = !diseaseExpanded }
                 ) {
                     OutlinedTextField(
-                        value = selectedDisease.ifEmpty { "Select if known" },
+                        // BUG 5 FIX: Use stringResource
+                        value = selectedDisease.ifEmpty { stringResource(R.string.select_if_known) },
                         onValueChange = {},
                         readOnly = true,
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = diseaseExpanded) },
@@ -113,13 +123,14 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
                         }
                     }
                 }
-                
+
                 if (selectedDisease == "Others") {
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedTextField(
                         value = otherDisease,
                         onValueChange = { otherDisease = it },
-                        label = { Text("Enter Disease Name") },
+                        // BUG 5 FIX: Use stringResource
+                        label = { Text(stringResource(R.string.enter_disease_name)) },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
@@ -127,16 +138,19 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
 
             // Severity
             item {
-                Text("Severity (ತೀವ್ರತೆ)", fontWeight = FontWeight.Bold)
+                // BUG 5 FIX: Use stringResource
+                Text(stringResource(R.string.severity_label), fontWeight = FontWeight.Bold)
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    listOf("Low", "Medium", "High").forEach { level ->
-                        FilterChip(
-                            selected = severity == level,
-                            onClick = { severity = level },
-                            label = { Text(level) },
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
+                    // BUG 5 FIX: Use string resources for severity labels
+                    listOf("Low" to lowLabel, "Medium" to mediumLabel, "High" to highLabel)
+                        .forEach { (key, label) ->
+                            FilterChip(
+                                selected = severity == key,
+                                onClick = { severity = key },
+                                label = { Text(label) },
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
                 }
             }
 
@@ -145,9 +159,12 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
                 OutlinedTextField(
                     value = symptoms,
                     onValueChange = { symptoms = it },
-                    label = { Text("Symptoms Description (ರೋಗದ ಲಕ್ಷಣಗಳು)") },
-                    modifier = Modifier.fillMaxWidth().height(120.dp),
-                    placeholder = { Text("e.g. Fever, not eating...") }
+                    // BUG 5 FIX: Use stringResource
+                    label = { Text(stringResource(R.string.symptoms_description_label)) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(120.dp),
+                    placeholder = { Text(stringResource(R.string.symptoms_placeholder)) }
                 )
             }
 
@@ -158,18 +175,25 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
                     onClick = {
                         if (canSubmit) {
                             scope.launch {
-                                snackbarHostState.showSnackbar("Alert sent to Veterinary Assistant! (ವೆಟ್ ವೈದ್ಯರಿಗೆ ತಿಳಿಸಲಾಗಿದೆ)")
+                                // BUG 5 FIX: Use stringResource (pre-loaded above)
+                                snackbarHostState.showSnackbar(alertSentMsg)
                                 navController.popBackStack()
                             }
                         }
                     },
                     enabled = canSubmit,
-                    modifier = Modifier.fillMaxWidth().height(56.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (severity == "High") MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                        containerColor = if (severity == "High")
+                            MaterialTheme.colorScheme.error
+                        else
+                            MaterialTheme.colorScheme.primary
                     )
                 ) {
-                    Text("Send Emergency Alert (ತುರ್ತು ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಿ)")
+                    // BUG 5 FIX: Use stringResource
+                    Text(stringResource(R.string.send_emergency_alert))
                 }
             }
         }

@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "camp_alerts")
 data class CampAlert(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val titleResId: Int,
-    val descResId: Int,
-    val locationResId: Int,
+    val title: String,           // ✅ Was: titleResId: Int
+    val description: String,     // ✅ Was: descResId: Int
+    val location: String,        // ✅ Was: locationResId: Int
     val date: Long,
-    val typeResId: Int
+    val type: String             // ✅ Was: typeResId: Int
 )

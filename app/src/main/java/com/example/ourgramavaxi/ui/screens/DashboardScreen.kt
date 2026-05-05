@@ -23,17 +23,23 @@ import com.example.ourgramavaxi.viewmodel.AnimalViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen(navController: NavHostController, viewModel: AnimalViewModel) {
+fun DashboardScreen(
+    navController: NavHostController,
+    viewModel: AnimalViewModel,
+    // KANNADA FIX: Accept the toggle+recreate lambda from MainActivity
+    // so this screen doesn't need to know about Activity.recreate() directly
+    onLanguageToggle: () -> Unit = {}
+) {
     val currentLang by viewModel.currentLanguage.collectAsState()
 
     Scaffold(
-        topBar = { 
+        topBar = {
             TopAppBar(
-                title = { 
+                title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            Icons.Default.Pets, 
-                            contentDescription = null, 
+                            Icons.Default.Pets,
+                            contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(32.dp)
                         )
@@ -42,7 +48,9 @@ fun DashboardScreen(navController: NavHostController, viewModel: AnimalViewModel
                     }
                 },
                 actions = {
-                    TextButton(onClick = { viewModel.toggleLanguage() }) {
+                    // KANNADA FIX: Call onLanguageToggle which calls
+                    // viewModel.toggleLanguage() + activity.recreate()
+                    TextButton(onClick = onLanguageToggle) {
                         Text(
                             text = if (currentLang == "en") "ಕನ್ನಡ" else "English",
                             fontWeight = FontWeight.Bold,
@@ -53,7 +61,7 @@ fun DashboardScreen(navController: NavHostController, viewModel: AnimalViewModel
                         Icon(Icons.Default.Notifications, contentDescription = "Notifications")
                     }
                 }
-            ) 
+            )
         }
     ) { innerPadding ->
         Column(
@@ -70,42 +78,56 @@ fun DashboardScreen(navController: NavHostController, viewModel: AnimalViewModel
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            // Row 1: Animal Ledger & Vaccine Calendar
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
                 DashboardCard(
-                    stringResource(R.string.animal_ledger), 
-                    Icons.Default.Pets, 
+                    stringResource(R.string.animal_ledger),
+                    Icons.Default.Pets,
                     MaterialTheme.colorScheme.primaryContainer,
                     Modifier.weight(1f)
-                ) {
-                    navController.navigate("animal_ledger")
-                }
+                ) { navController.navigate("animal_ledger") }
                 DashboardCard(
-                    stringResource(R.string.vaccine_calendar), 
-                    Icons.Default.Event, 
+                    stringResource(R.string.vaccine_calendar),
+                    Icons.Default.Event,
                     MaterialTheme.colorScheme.secondaryContainer,
                     Modifier.weight(1f)
-                ) {
-                    navController.navigate("vaccine_calendar")
-                }
+                ) { navController.navigate("vaccine_calendar") }
             }
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            // Row 2: Camp Alerts & Report Sick
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
                 DashboardCard(
-                    stringResource(R.string.camp_alerts), 
-                    Icons.Default.Campaign, 
+                    stringResource(R.string.camp_alerts),
+                    Icons.Default.Campaign,
                     MaterialTheme.colorScheme.tertiaryContainer,
                     Modifier.weight(1f)
-                ) {
-                    navController.navigate("camp_alerts")
-                }
+                ) { navController.navigate("camp_alerts") }
                 DashboardCard(
-                    stringResource(R.string.report_sick), 
-                    Icons.Default.HealthAndSafety, 
+                    stringResource(R.string.report_sick),
+                    Icons.Default.HealthAndSafety,
                     MaterialTheme.colorScheme.errorContainer,
                     Modifier.weight(1f)
-                ) {
-                    navController.navigate("report_sick")
-                }
+                ) { navController.navigate("report_sick") }
+            }
+
+            // Row 3: General Information
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                DashboardCard(
+                    stringResource(R.string.general_information),
+                    Icons.Default.Info,
+                    MaterialTheme.colorScheme.surfaceVariant,
+                    Modifier.weight(1f)
+                ) { navController.navigate("general_information") }
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
     }

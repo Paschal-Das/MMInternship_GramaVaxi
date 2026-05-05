@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.ourgramavaxi.data.AppDatabase
+import com.example.ourgramavaxi.data.VaccineConstants
 import com.example.ourgramavaxi.notifications.NotificationHelper
 import kotlinx.coroutines.flow.first
 
@@ -16,19 +17,16 @@ class VaccineWorker(
         val notificationHelper = NotificationHelper(applicationContext)
         val database = AppDatabase.getDatabase(applicationContext)
         val animalDao = database.animalDao()
-        
-        // Check for upcoming vaccinations
+
         val upcoming = animalDao.getAllUpcomingVaccinations().first()
         val now = System.currentTimeMillis()
-        
-        // Target: Notify 3 days before nextDueDate
-        // Notification Window: Between (nextDueDate - 3 days) and nextDueDate
-        val threeDaysInMs = 3L * 24 * 60 * 60 * 1000L
-        
+
+        // ✅ Bug 13: Use named constant instead of magic number
+        val notifyWindowMs = VaccineConstants.NOTIFICATION_DAYS * 24 * 60 * 60 * 1000L
+
         val dueForNotification = upcoming.filter { vacc ->
             val dueDate = vacc.nextDueDate ?: 0L
-            val notifyStartTime = dueDate - threeDaysInMs
-            
+            val notifyStartTime = dueDate - notifyWindowMs
             !vacc.isCompleted && dueDate > 0 && now >= notifyStartTime && now < dueDate
         }
 
@@ -36,7 +34,9 @@ class VaccineWorker(
             val animal = animalDao.getAnimalById(vacc.animalId)
             notificationHelper.showNotification(
                 title = "Upcoming Vaccine! (ಲಸಿಕೆ ಸಮಯ)",
-                message = "${animal?.name ?: "Animal"} is due for ${vacc.vaccineName} in 3 days."
+                message = "${animal?.name ?: "Animal"} is due for ${vacc.vaccineName} in ${VaccineConstants.NOTIFICATION_DAYS} days.",
+                // ✅ Bug 7 fix: Use vaccination record ID as stable unique notification ID
+                notificationId = vacc.id
             )
         }
 

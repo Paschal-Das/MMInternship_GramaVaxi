@@ -8,11 +8,11 @@ import com.example.ourgramavaxi.R
 data class Animal(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
-    val species: String, // "Sheep" or "Goat"
+    val species: String,
     val breed: String,
-    val gender: String, // "Male" or "Female"
+    val gender: String,
     val ageInYears: Int,
-    val district: String = "Mandya", // Default for prototype
+    val district: String = "Mandya",
     val notes: String = "",
     val photoUri: String? = null,
     val dateAdded: Long = System.currentTimeMillis()
@@ -22,7 +22,7 @@ object AnimalConstants {
     val SPECIES = listOf("Sheep", "Goat")
     val GENDERS = listOf("Male", "Female")
 
-    val DISTRICTS = listOf(
+    val DISTRICTS = listOf<Pair<String, Int>>(
         "Bagalkot" to R.string.bagalkot,
         "Ballari" to R.string.ballari,
         "Belagavi" to R.string.belagavi,
@@ -55,8 +55,8 @@ object AnimalConstants {
         "Yadgir" to R.string.yadgir,
         "Vijayanagara" to R.string.vijayanagara
     )
-    
-    val SHEEP_BREEDS = listOf(
+
+    val SHEEP_BREEDS = listOf<Pair<String, Int>>(
         "Deccani" to R.string.deccani,
         "Bellary" to R.string.bellary,
         "Mandya" to R.string.mandya,
@@ -64,12 +64,12 @@ object AnimalConstants {
         "Hassan" to R.string.hassan,
         "Others" to R.string.others
     )
-    val GOAT_BREEDS = listOf(
+    val GOAT_BREEDS = listOf<Pair<String, Int>>(
         "Osmanabadi" to R.string.osmanabadi,
         "Bidri" to R.string.bidri,
         "Malnad Gidda" to R.string.malnad_gidda,
         "Beetal" to R.string.beetal,
-        "Kodagu" to R.string.kodagu,
+        "Kodagu" to R.string.kodagu_breed,
         "Others" to R.string.others
     )
 
@@ -93,28 +93,29 @@ object VaccineConstants {
     const val CCPP = "CCPP (Goat)"
     const val ANTHRAX = "Anthrax Vaccine"
 
-    // Intervals in days
     val VACCINE_INTERVALS = mapOf(
-        FMD to 180,           // 6 months
-        ENTEROTOXEMIA to 180, // 6 months
-        PPR to 1095,          // 3 years
-        POX to 365,           // 12 months
-        BLUETONGUE to 365,    // 12 months
-        CCPP to 365,          // 12 months
-        HS to 365,            // 12 months
-        ANTHRAX to 365        // 12 months
+        FMD to 180,
+        ENTEROTOXEMIA to 180,
+        PPR to 1095,
+        POX to 365,
+        BLUETONGUE to 365,
+        CCPP to 365,
+        HS to 365,
+        ANTHRAX to 365
     )
 
-    // Seasonal Windows (Month indices: 0 = Jan, 1 = Feb, etc.)
     val SEASONAL_WINDOWS = mapOf(
-        FMD to listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), // For prototype: Always active
-        HS to listOf(4, 5),       // May (4) & June (5) - Pre-monsoon
-        POX to listOf(1, 2),      // Feb (1) & March (2) - Pre-summer
-        ANTHRAX to listOf(7, 8)   // Aug (7) & Sept (8) - Post-monsoon windows
+        FMD to listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+        HS to listOf(4, 5),
+        POX to listOf(1, 2),
+        ANTHRAX to listOf(7, 8)
     )
 
-    // Districts where specific vaccines are mandatory/highly recommended
     val HOTSPOT_ZONES = mapOf(
         ANTHRAX to listOf("Chamarajanagar", "Mandya", "Mysuru")
     )
+
+    // ✅ Bug 13 fix: Named constants instead of magic numbers scattered across files
+    const val DUE_BADGE_DAYS = 14L      // Show "Due" badge in Animal Ledger
+    const val NOTIFICATION_DAYS = 3L    // Send push notification
 }
