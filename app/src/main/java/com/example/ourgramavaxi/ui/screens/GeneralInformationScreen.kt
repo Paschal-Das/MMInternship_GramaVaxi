@@ -164,70 +164,82 @@ fun ExpandableInformationCard(section: InformationSection) {
  */
 @Composable
 fun FormattedContent(text: String, modifier: Modifier = Modifier) {
-    val lines = text.split("\n")
+    // Pre-processing to handle the user's request for automatic line breaks
+    // and better alignment across languages.
+    val processedText = text
+        // 1. Break after full stop, question mark, or exclamation followed by space (Sentence splitting)
+        .replace(Regex("([.!?])\\s+"), "$1\n")
+        // 2. Break before list markers (✓, ❌, ✗, -, ⚠️) if they are preceded by text
+        .replace(Regex("(?<=\\S)\\s*([✓❌✗\\-⚠️])"), "\n$1")
+        // 3. Break before numbered points (e.g., " 2.", " ೨.") if they are preceded by text
+        .replace(Regex("(?<=\\S)\\s*([0-9\u0CE6-\u0CEF]+\\.)"), "\n$1")
+
+    val lines = processedText.split("\n")
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(3.dp)) {
         lines.forEach { raw ->
             val line = raw.trim()
-            when {
-                // Empty line → breathing space
-                line.isEmpty() -> {
-                    Spacer(modifier = Modifier.height(6.dp))
-                }
+            
+            // Empty line → breathing space
+            if (line.isEmpty()) {
+                Spacer(modifier = Modifier.height(6.dp))
+                return@forEach
+            }
 
-                // ALL CAPS line = section header (e.g. "VACCINE DETAILS", "SPECIAL NOTES")
-                line.length > 3
-                        && line == line.uppercase()
-                        && line.first().isLetter() -> {
+            // Header detection:
+            // - ALL CAPS English (at least 1 Latin letter)
+            // - Or ends with a colon or dash (common in both English and Kannada headers)
+            val isHeader = (line.length > 3 && line == line.uppercase() && line.any { it in 'A'..'Z' }) ||
+                    line.endsWith(":") ||
+                    line.endsWith("：") ||
+                    line.endsWith("-")
+
+            // Numbered points: Latin or Kannada digits, followed by . or )
+            val isNumbered = line.matches(Regex("^[0-9\u0CE6-\u0CEF]+[\\.)].*"))
+
+            // List items
+            val isListItem = line.startsWith("✓") || line.startsWith("❌") || line.startsWith("✗") || 
+                             line.startsWith("-") || line.startsWith("⚠️")
+
+            when {
+                isHeader -> {
                     Text(
                         text = line,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 13.sp,
+                        fontSize = 16.sp,
                         color = MaterialTheme.colorScheme.primary,
                         letterSpacing = 0.5.sp,
-                        modifier = Modifier.padding(top = 8.dp, bottom = 2.dp)
+                        modifier = Modifier.padding(top = 10.dp, bottom = 4.dp)
                     )
                 }
 
-                // Numbered points: "1. Something", "2. Something"
-                line.matches(Regex("^\\d+\\..*")) -> {
+                isNumbered -> {
                     Text(
                         text = line,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        lineHeight = 19.sp,
-                        modifier = Modifier.padding(top = 4.dp)
+                        lineHeight = 21.sp,
+                        modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
                     )
                 }
 
-                // Check / cross / dash list items — indent them
-                line.startsWith("✓") || line.startsWith("❌") || line.startsWith("✗") -> {
-                    Text(
-                        text = line,
-                        fontSize = 13.sp,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        lineHeight = 19.sp,
-                        modifier = Modifier.padding(start = 4.dp)
-                    )
-                }
-
-                line.startsWith("-") -> {
+                isListItem -> {
                     Text(
                         text = line,
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        lineHeight = 19.sp,
-                        modifier = Modifier.padding(start = 16.dp)
+                        lineHeight = 20.sp,
+                        modifier = Modifier.padding(start = if (line.startsWith("-")) 16.dp else 4.dp)
                     )
                 }
 
-                // Indented sub-detail lines (e.g. lines starting with spaces)
+                // Indented sub-detail lines (e.g. lines starting with spaces in strings.xml)
                 raw.startsWith("  ") || raw.startsWith("\t") -> {
                     Text(
                         text = line,
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
-                        lineHeight = 17.sp,
+                        lineHeight = 18.sp,
                         modifier = Modifier.padding(start = 16.dp)
                     )
                 }
@@ -238,7 +250,7 @@ fun FormattedContent(text: String, modifier: Modifier = Modifier) {
                         text = line,
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        lineHeight = 19.sp
+                        lineHeight = 20.sp
                     )
                 }
             }

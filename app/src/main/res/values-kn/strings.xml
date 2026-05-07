@@ -1,71 +1,391 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- APP NAME -->
+    <string name="app_name">ಗ್ರಾಮ-ವಾಕ್ಸಿ</string>
+
+    <!-- BASIC UI STRINGS -->
+    <string name="add_animal">ಪ್ರಾಣಿ ಸೇರಿಸಿ</string>
+    <string name="back">ಹಿಂದೆ</string>
+    <string name="animal_name">ಪ್ರಾಣಿಯ ಹೆಸರು</string>
+    <string name="species">ಜಾತಿ</string>
+    <string name="sheep">ಕುರಿ</string>
+    <string name="goat">ಮೇಕೆ</string>
+    <string name="gender">ಲಿಂಗ</string>
+    <string name="male">ಪುರುಷ</string>
+    <string name="female">ಹೆಣ್ಣು</string>
+    <string name="select_breed">ತಳಿಯನ್ನು ಆರಿಸಿ</string>
+    <string name="enter_breed_name">ತಳಿಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="age_years">ವಯಸ್ಸು (ವರ್ಷಗಳು)</string>
+    <string name="select_district">ಜಿಲ್ಲೆಯನ್ನು ಆರಿಸಿ</string>
+    <string name="notes_description">ಟಿಪ್ಪಣಿಗಳು / ವಿವರಣೆ</string>
+    <string name="vaccination_history">ಲಸಿಕೆ ಇತಿಹಾಸ</string>
+    <string name="select_vaccine_optional">ಲಸಿಕೆಯನ್ನು ಆರಿಸಿ (ಐಚ್ಛಿಕ)</string>
+    <string name="enter_vaccine_name">ಲಸಿಕೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="last_vaccination_date">ಕೊನೆಯ ಲಸಿಕೆ ದಿನಾಂಕ</string>
+    <string name="next_vaccination_date">ಮುಂದಿನ ಲಸಿಕೆ ದಿನಾಂಕ</string>
+    <string name="save">ಉಳಿಸಿ</string>
+    <string name="cancel">ರದ್ದು ಮಾಡಿ</string>
+    <string name="upcoming_doses">ಮುಂದಿನ ಪ್ರಮಾಣಗಳು</string>
+    <string name="no_upcoming">ಮುಂದಿನ ಲಸಿಕೆಗಳಿಲ್ಲ</string>
+    <string name="no_history">ಲಸಿಕೆ ಇತಿಹಾಸ ದಾಖಲಿತವಾಗಿಲ್ಲ</string>
+    <string name="breed">ತಳಿ</string>
+    <string name="given_on">ನೀಡಿದ: %s</string>
+    <string name="due_on">ಬಾಕಿ: %s</string>
+    <string name="animal_ledger">ಪ್ರಾಣಿ ಖಾತೆ</string>
+    <string name="no_animals">ಇನ್ನೂ ಪ್ರಾಣಿಗಳನ್ನು ಸೇರಿಸಲಾಗಿಲ್ಲ</string>
+    <string name="delete_animal">ಪ್ರಾಣಿಯನ್ನು ಅಳಿಸಿ</string>
+    <string name="delete_confirm">ನೀವು %s ಪ್ರಾಣಿಯನ್ನು ಅಳಿಸಲು ಖಚಿತರೇ?</string>
+    <string name="delete">ಅಳಿಸಿ</string>
+    <string name="edit_animal">ಪ್ರಾಣಿ ಮಾಹಿತಿ ತಿದ್ದುಪಡಿ</string>
+    <string name="due">ಬಾಕಿ</string>
+    <string name="camp_alerts">ಶಿಬಿರ ಎಚ್ಚರಿಕೆಗಳು</string>
+    <string name="no_alerts">ಸಕ್ರಿಯ ಲಸಿಕೆ ಶಿಬಿರಗಳಿಲ್ಲ</string>
+    <string name="registered_msg">%s ಶಿಬಿರಕ್ಕೆ ನೋಂದಾಯಿತವಾಗಿದೆ</string>
+    <string name="cancel_registration">ನೋಂದಣಿ ರದ್ದು ಮಾಡಿ</string>
+    <string name="register_now">ಈಗ ನೋಂದಾಯಿತಗೊಳಿಸಿ</string>
+    <string name="add_camp_alert">ಶಿಬಿರದ ಎಚ್ಚರಿಕೆ ಸೇರಿಸಿ</string>
+    <string name="tap_plus_to_add_camp">ಹೊಸ ಶಿಬಿರದ ಎಚ್ಚರಿಕೆಯನ್ನು ಸೇರಿಸಲು + ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+    <string name="camp_title">ಶಿಬಿರದ ಶೀರ್ಷಿಕೆ</string>
+    <string name="camp_location">ಸ್ಥಳ</string>
+    <string name="camp_type">ಪ್ರಕಾರ</string>
+    <string name="camp_description">ವಿವರಣೆ</string>
+    <string name="camp_date">ದಿನಾಂಕ</string>
+    <string name="dashboard">ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</string>
+    <string name="vaccine_calendar">ಲಸಿಕೆ ಕ್ಯಾಲೆಂಡರ್</string>
+    <string name="report_sick">ಅನಾರೋಗ್ಯ ಪ್ರಾಣಿಯನ್ನು ವರದಿ ಮಾಡಿ</string>
+    <string name="alert_sent_message">ಸ್ಥಳೀಯ ಪಶುವೈದ್ಯರಿಗೆ ತುರ್ತು ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಲಾಗಿದೆ!</string>
+    <string name="low">ಕಡಿಮೆ</string>
+    <string name="medium">ಮಧ್ಯಮ</string>
+    <string name="high">ಹೆಚ್ಚು</string>
+    <string name="select_animal_label">ಪ್ರಾಣಿಯನ್ನು ಆರಿಸಿ</string>
+    <string name="select_label">ಆರಿಸಿ</string>
+    <string name="known_disease_label">ತಿಳಿದಿರುವ ರೋಗ? (ಯಾವುದಾದರೂ ಇದ್ದರೆ)</string>
+    <string name="select_if_known">ತಿಳಿದಿದ್ದರೆ ಆರಿಸಿ</string>
+    <string name="enter_disease_name">ರೋಗದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="severity_label">ತೀವ್ರತೆ</string>
+    <string name="symptoms_description_label">ಲಕ್ಷಣಗಳು / ವಿವರಣೆ</string>
+    <string name="symptoms_placeholder">ಪ್ರಾಣಿ ಹೇಗೆ ವರ್ತಿಸುತ್ತಿದೆ ಎಂದು ವಿವರಿಸಿ...</string>
+    <string name="send_emergency_alert">ತುರ್ತು ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಿ</string>
+    <string name="active_campaign_window">ಸಕ್ರಿಯ ಪ್ರಚಾರ ಸಮಯ</string>
+    <string name="govt_prioritizing">ಸರ್ಕಾರವು ಈ ಋತುವಿನಲ್ಲಿ %s ಅನ್ನು ಆದ್ಯತೆ ನೀಡುತ್ತಿದೆ.</string>
+    <string name="animal_schedule">ಪ್ರಾಣಿ ಲಸಿಕೆ ವೇಳಾಕೃತಿ</string>
+    <string name="no_vaccinations_scheduled">ಯಾವುದೇ ಲಸಿಕೆಗಳನ್ನು ಆಯೋಜಿಸಲಾಗಿಲ್ಲ</string>
+    <string name="animal_label">ಪ್ರಾಣಿ: %s</string>
+    <string name="date_label">ದಿನಾಂಕ: %s</string>
+    <string name="initial_checkup">ಆರಂಭಿಕ ಪರೀಕ್ಷೆ</string>
+    <string name="animal_photo">ಪ್ರಾಣಿಯ ಫೋಟೋ</string>
+    <string name="change_photo">ಫೋಟೋ ಬದಲಾಯಿಸಿ</string>
+    <string name="add_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
+
+    <!-- VACCINE NAMES -->
+    <string name="fmd_vaccine">FMD ಲಸಿಕೆ</string>
+    <string name="ppr_vaccine">PPR ಲಸಿಕೆ</string>
+    <string name="pox_vaccine">ಸಿಡುಬು ಲಸಿಕೆ</string>
+    <string name="hs_vaccine">HS ಲಸಿಕೆ</string>
+    <string name="bluetongue_vaccine">ನೀಲಿ ನಕ್ಕೆ ಲಸಿಕೆ</string>
+    <string name="enterotoxemia">ಕರುಳಿನ ವಿಷಪ್ರಭುತ್ವ</string>
+    <string name="ccpp_vaccine">CCPP ಲಸಿಕೆ (ಮೇಕೆ)</string>
+    <string name="anthrax_vaccine">ಆಂಥ್ರಾಕ್ಸ್ ಲಸಿಕೆ</string>
+    <string name="others">ಇತರೆ</string>
+
+    <!-- DISTRICTS (All 30 Karnataka districts) -->
+    <string name="bagalkot">ಬಾಗಲಕೋಟೆ</string>
+    <string name="ballari">ಬಳ್ಳಾರಿ</string>
+    <string name="belagavi">ಬೇಳಗಾವಿ</string>
+    <string name="bengaluru_rural">ಬೆಂಗಳೂರು ಗ್ರಾಮೀಣ</string>
+    <string name="bengaluru_urban">ಬೆಂಗಳೂರು ನಗರ</string>
+    <string name="bidar">ಬೀದರ</string>
+    <string name="chamarajanagar">ಚಾಮರಾಜನಗರ</string>
+    <string name="chikkaballapur">ಚಿಕ್ಕಬಳ್ಳಾಪುರೆ</string>
+    <string name="chikkamagaluru">ಚಿಕ್ಕಮಗಳೂರು</string>
+    <string name="chitradurga">ಚಿತ್ರದುರ್ಗ</string>
+    <string name="dakshina_kannada">ದಕ್ಷಿಣ ಕನ್ನಡ</string>
+    <string name="davanagere">ದವಣಗೆರೆ</string>
+    <string name="dharwad">ಧರ್ವಾಡ</string>
+    <string name="gadag">ಗದಗ</string>
+    <string name="hassan">ಹಾಸನ</string>
+    <string name="haveri">ಹವೇರಿ</string>
+    <string name="kalaburagi">ಕಳಬುರಗಿ</string>
+    <string name="kodagu">ಕೋಡಗು</string>
+    <string name="kolar">ಕೋಲಾರ</string>
+    <string name="koppal">ಕೊಪ್ಪಳ</string>
+    <string name="mandya">ಮಂಡ್ಯ</string>
+    <string name="mysuru">ಮೈಸೂರು</string>
+    <string name="raichur">ರೈಚೂರು</string>
+    <string name="ramanagara">ರಾಮನಗರ</string>
+    <string name="shivamogga">ಶಿವಮೊಗ್ಗ</string>
+    <string name="tumakuru">ತುಮಕೂರು</string>
+    <string name="udupi">ಉದುಪಿ</string>
+    <string name="uttara_kannada">ಉತ್ತರ ಕನ್ನಡ</string>
+    <string name="vijayapura">ವಿಜಯಪುರ</string>
+    <string name="yadgir">ಯಾದಗಿರಿ</string>
+    <string name="vijayanagara">ವಿಜಯನಗರ</string>
+
+    <!-- BREEDS -->
+    <string name="deccani">ದೇಶ್ವಾಮೀ</string>
+    <string name="bellary">ಬಳ್ಳಾರಿ</string>
+    <string name="bannur">ಬಣ್ಣೂರು</string>
+    <string name="osmanabadi">ಓಸ್ಮಾನಾಬಾದಿ</string>
+    <string name="bidri">ಬೀದರಿ</string>
+    <string name="malnad_gidda">ಮಲ್ನಾಡ್ ಗಿದ್ದ</string>
+    <string name="beetal">ಬೀಟಲ್</string>
+    <string name="kodagu_breed">ಕೋಡಗು ತಳಿ</string>
+
     <!-- GENERAL INFORMATION SCREEN -->
     <string name="general_information">ಸಾಮಾನ್ಯ ಮಾಹಿತಿ</string>
 
-    <!-- Section Titles - Kannada labels, English disease names -->
+    <!-- Section Titles - Kannada labels -->
     <string name="info_what_is_vaccine">ಲಸಿಕೆ ಎಂದರೇನು?</string>
     <string name="info_types_of_vaccines">ಲಸಿಕೆಯ ಪ್ರಕಾರಗಳು</string>
     <string name="info_advantages">ಲಸಿಕೆಗಳ ಪ್ರಯೋಜನಗಳು</string>
     <string name="info_important_points">ಲಸಿಕೆ ಹಾಕುವಾಗ ಮುಖ್ಯ ಬಿಂದುಗಳು</string>
     <string name="info_vaccine_failure">ಲಸಿಕೆ ವಿಫಲತೆಯ ಕಾರಣಗಳು</string>
     <string name="info_ppr_disease">PPR (Peste des Petits Ruminants)</string>
-    <string name="info_sheep_pox_disease">Sheep Pox</string>
-    <string name="info_goat_pox_disease">Goat Pox</string>
-    <string name="info_fmd_disease">FMD (Foot and Mouth Disease)</string>
-    <string name="info_hs_disease">HS (Haemorrhagic Septicaemia)</string>
+    <string name="info_sheep_pox_disease">ಕುರಿ ಸಿಡುಬು</string>
+    <string name="info_goat_pox_disease">ಮೇಕೆ ಸಿಡುಬು</string>
+    <string name="info_fmd_disease">FMD (ಕಾಲುಬಾಯಿ ರೋಗ)</string>
+    <string name="info_hs_disease">HS (ರಕ್ತರೋಗ)</string>
     <string name="info_anthrax_disease">ಆಂಥ್ರಾಕ್ಸ್</string>
-    <string name="info_enterotoxemia_disease">Enterotoxaemia</string>
-    <string name="ccpp_vaccine">CCPP ಲಸಿಕೆ (ಮೇಕೆ)</string>
-    <string name="edit_animal">ಪ್ರಾಣಿ ಮಾಹಿತಿ ತಿದ್ದುಪಡಿ</string>
-    <string name="animal_photo">ಪ್ರಾಣಿಯ ಫೋಟೋ</string>
-    <string name="change_photo">ಫೋಟೋ ಬದಲಾಯಿಸಿ</string>
-    <string name="add_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
+    <string name="info_enterotoxemia_disease">ಕರುಳಿನ ವಿಷಪ್ರಭುತ್ವ</string>
     <string name="info_when_not_to_vaccinate">ಲಸಿಕೆ ಹಾಕಬಾರದ ಸಮಯ</string>
 
-    <!-- Source Attribution in Kannada -->
+    <!-- Section Content in Kannada -->
+    <string name="info_what_is_vaccine_content">ವ್ಯಾಖ್ಯಾನ (DEFINITION):
+ಲಸಿಕೆ ಎನ್ನುವುದು ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯನ್ನು ಉತ್ಪಾದಿಸುವ ಮತ್ತು ರೋಗಕಾರಕ ಜೀವಿಗಳ ವಿರುದ್ಧ ರಕ್ಷಣೆ ನೀಡುವ ಒಂದು ಜೈವಿಕ ತಯಾರಿಕೆಯಾಗಿದೆ. ಇದು ಪ್ರಾಣಿಗಳ ದೇಹಕ್ಕೆ ರೋಗ ಬರದಂತೆ ಮುನ್ನೆಚ್ಚರಿಕೆ ನೀಡುತ್ತದೆ.
+
+ಲಸಿಕಾ ಪ್ರಕ್ರಿಯೆ:
+ಲಸಿಕೆ ಹಾಕುವಿಕೆಯು ಸತ್ತ ಅಥವಾ ದುರ್ಬಲಗೊಂಡ ಜೀವಿಗಳ ಅಥವಾ ಅವುಗಳ ಘಟಕಗಳ ಚುಚ್ಚುಮದ್ದಿನ ಪ್ರಕ್ರಿಯೆಯಾಗಿದ್ದು ಅದು ದೇಹದಲ್ಲಿ ಆ ಜೀವಿಯ ವಿರುದ್ಧ ನಿರ್ದಿಷ್ಟ ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯನ್ನು ಉತ್ಪಾದಿಸುತ್ತದೆ.</string>
+    <string name="info_types_of_vaccines_content">ಪ್ರಕಾರ ೧: ನಿಷ್ಕ್ರಿಯ ಲಸಿಕೆಗಳು (Killed Vaccines)
+ಭೌತಿಕ ಅಥವಾ ರಾಸಾಯನಿಕ ವಿಧಾನಗಳಿಂದ ನಿಷ್ಕ್ರಿಯಗೊಂಡ ಅಥವಾ ಸಾಯಿಸಿದ ರೋಗಕಾರಕಗಳನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ, ಇದರಿಂದ ಜೀವಿಗಳು ತಮ್ಮ ರೋಗಕಾರಕತೆಯನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಕಳೆದುಕೊಳ್ಳುತ್ತವೆ.
+
+ಪ್ರಕಾರ ೨: ಸಜೀವ ಲಸಿಕೆಗಳು (Live Vaccines)
+ಪ್ರಕೃತಿಯಲ್ಲಿ ಅಥವಾ ಪ್ರಯೋಗಾಲಯದಲ್ಲಿ ಮಾರ್ಪಡಿಸಿದ ಸಜೀವ ಜೀವಿಗಳನ್ನು ಒಳಗೊಂಡಿರುತ್ತವೆ, ಇದರಿಂದ ಅವು ರೋಗವನ್ನು ಉಂಟುಮಾಡುವ ಸಾಮರ್ಥ್ಯವನ್ನು ಕಳೆದುಕೊಳ್ಳುತ್ತವೆ ಆದರೆ ದೇಹದಲ್ಲಿ ರೋಗನಿರೋಧಕ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಉಂಟುಮಾಡುವ ಸಾಮರ್ಥ್ಯವನ್ನು ಉಳಿಸಿಕೊಳ್ಳುತ್ತವೆ.
+
+ಪ್ರಕಾರ ೩: ರಿಕಾಂಬಿನೆಂಟ್ ಲಸಿಕೆಗಳು (Recombinant Vaccines)
+ರಿಕಾಂಬಿನೆಂಟ್ ಡಿಎನ್‌ಎ ತಂತ್ರಜ್ಞಾನವನ್ನು ಬಳಸಿ ತಯಾರಿಸಲಾಗುತ್ತದೆ. ಸಾಮಾನ್ಯವಾಗಿ ವ್ಯಕ್ತಪಡಿಸಿದ ಪ್ರೋಟೀನ್‌ಗಳನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ.</string>
+    <string name="info_advantages_content">ಲಸಿಕೆಗಳ ಪ್ರಮುಖ ಪ್ರಯೋಜನಗಳು:
+
+- ಪ್ರಾಣಿಗಳನ್ನು ನಿರ್ದಿಷ್ಟ ರೋಗಗಳ ವಿರುದ್ಧ ರಕ್ಷಿಸುತ್ತದೆ
+- ರೋಗಗಳ ಸಾಂಕ್ರಾಮಿಕ ರೋಗಗಳನ್ನು ತಡೆಯುತ್ತದೆ
+- ಇತರ ಪ್ರಾಣಿಗಳಿಗೆ ಮತ್ತು ಮನುಷ್ಯರಿಗೆ ಹರಡುವುದನ್ನು ತಡೆಯುತ್ತದೆ
+- ಸೋಂಕಿತ ಪ್ರಾಣಿಗಳ ಚಿಕಿತ್ಸೆಯಲ್ಲಿ ತಗಲುವ ವೆಚ್ಚವನ್ನು ತಡೆಯುತ್ತದೆ
+- ಆಹಾರದ ಮೂಲಕ ಹರಡುವ ಸಂಭಾವ್ಯ ಪ್ರಾಣಿ ರೋಗಗಳನ್ನು ತಡೆಯುತ್ತದೆ
+- ಹಿಂಡಿನ ಆರೋಗ್ಯ ಮತ್ತು ಉತ್ಪಾದಕತೆಯನ್ನು ಖಚಿತಪಡಿಸುತ್ತದೆ</string>
+    <string name="info_important_points_content">ಪ್ರಮುಖ ಲಸಿಕಾ ಮಾರ್ಗಸೂಚಿಗಳು:
+
+೧. ಆರೋಗ್ಯವಂತ ಪ್ರಾಣಿಗಳಿಗೆ ಮಾತ್ರ ಲಸಿಕೆ ಹಾಕಬೇಕು
+- ದುರ್ಬಲ ಪ್ರಾಣಿಗಳಿಗೆ ಲಸಿಕೆ ಹಾಕಬೇಡಿ
+- ಗರ್ಭಿಣಿ ಪ್ರಾಣಿಗಳಿಗೆ ಲಸಿಕೆ ಹಾಕಬೇಡಿ
+- ರೋಗನಿರೋಧಕ ಶಕ್ತಿ ಕಡಿಮೆ ಇರುವ ಪ್ರಾಣಿಗಳಿಗೆ ಲಸಿಕೆ ಹಾಕಬೇಡಿ
+
+೨. ಲಸಿಕೆ ಹಾಕುವ ಮೊದಲು ಜಂತುಹುಳು ನಿವಾರಣೆ
+- ಪರಿಣಾಮಕಾರಿ ಲಸಿಕೆಗಾಗಿ ಲಸಿಕೆ ಹಾಕುವ ಮೊದಲು ಜಂತುಹುಳು ನಿವಾರಣೆಗೆ ಯಾವಾಗಲೂ ಆದ್ಯತೆ ನೀಡಲಾಗುತ್ತದೆ
+- ಜಂತುಹುಳು ನಿವಾರಣೆಯ ನಂತರ ಕನಿಷ್ಠ ಒಂದು ವಾರ ಕಾಯಿರಿ
+
+೩. ಲಸಿಕೆ ಹಾಕುವ ಸಮಯ
+- ರೋಗ ಹರಡುವ ಸಂಭವನೀಯ ಸಮಯಕ್ಕಿಂತ ಕನಿಷ್ಠ ೨೦-೩೦ ದಿನಗಳ ಮೊದಲು ಲಸಿಕೆ ಹಾಕಬೇಕು
+- ಕಾಲೋಚಿತ ರೋಗಗಳ ಬಗ್ಗೆ ಮುಂಚಿತವಾಗಿ ಯೋಜನೆ ರೂಪಿಸಿ
+
+೪. ಕೋಲ್ಡ್ ಚೈನ್ ನಿರ್ವಹಣೆ
+- ಲಸಿಕೆಯನ್ನು ಸರಿಯಾದ ಕೋಲ್ಡ್ ಚೈನ್ ಅಡಿಯಲ್ಲಿ ನಿರ್ವಹಿಸಬೇಕು
+- ಹೆಚ್ಚಿನ ತಾಪಮಾನಕ್ಕೆ ಒಡ್ಡಿಕೊಂಡ ಲಸಿಕೆಯನ್ನು ಎಂದಿಗೂ ಬಳಸಬೇಡಿ</string>
+    <string name="info_vaccine_failure_content">೧. ಅನುಚಿತ ಆಡಳಿತ
+ಸೂಕ್ತ ಸಮಯ, ಡೋಸ್ ಮತ್ತು ಮಾರ್ಗದಲ್ಲಿ ಲಸಿಕೆ ಹಾಕದಿರುವುದು.
+
+೨. ಲಸಿಕೆಗಳ ಅನುಚಿತ ಮಿಶ್ರಣ
+ಬಳಸುವ ಮೊದಲು ಲಸಿಕೆಯನ್ನು ಸರಿಯಾಗಿ ಬೆರೆಸದಿರುವುದು.
+
+೩. ಅನುಚಿತ ಸಂಗ್ರಹಣೆ
+ತಯಾರಕರು ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ ತಾಪಮಾನದಲ್ಲಿ ಸಂಗ್ರಹಿಸದಿದ್ದರೆ ಲಸಿಕೆ ಪರಿಣಾಮಕಾರಿತ್ವ ಕಡಿಮೆಯಾಗುತ್ತದೆ.
+
+೪. ಲಸಿಕೆಯ ಕಳಪೆ ಗುಣಮಟ್ಟ
+ಕೆಲವೊಮ್ಮೆ ಕಳಪೆ ಗುಣಮಟ್ಟದ ಲಸಿಕೆಗಳು ಲಸಿಕೆ ವಿಫಲತೆಗೆ ಕಾರಣವಾಗಬಹುದು.
+
+೫. ಅನುಚಿತ ಸಮಯ
+ತುಂಬಾ ಬೇಗ ಲಸಿಕೆ ಹಾಕುವುದು ತಾಯಿಯ ಪ್ರತಿಕಾಯ ಹಸ್ತಕ್ಷೇಪಕ್ಕೆ ಕಾರಣವಾಗುತ್ತದೆ. ರೋಗ ಈಗಾಗಲೇ ಇದ್ದರೆ ತುಂಬಾ ತಡವಾಗಿ ಲಸಿಕೆ ಹಾಕುವುದು ಪರಿಣಾಮಕಾರಿಯಾಗದಿರಬಹುದು.
+
+೬. ಪ್ರಾಣಿ ಅಂಶಗಳು
+ಪರಿಸರದ ಒತ್ತಡ, ಕಳಪೆ ಪೌಷ್ಟಿಕಾಂಶ, ಅನುಚಿತ ವಯಸ್ಸು ಮತ್ತು ಸಾರಿಗೆ ಒತ್ತಡವು ಲಸಿಕೆ ವಿಫಲತೆಗೆ ಕಾರಣವಾಗಬಹುದು.
+
+೭. ಹಿಂಡಿನ ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯ ಕೊರತೆ
+ಹಿಂಡಿನ ಬಹುಪಾಲು ಪ್ರಾಣಿಗಳಿಗೆ (೮೦% ಕ್ಕಿಂತ ಕಡಿಮೆ) ರೋಗನಿರೋಧಕ ಶಕ್ತಿ ನೀಡದಿದ್ದರೆ, ಹಿಂಡಿನ ರೋಗನಿರೋಧಕ ಶಕ್ತಿ ಕಡಿಮೆಯಾಗುತ್ತದೆ ಮತ್ತು ಲಸಿಕೆ ವಿಫಲತೆ ಸಂಭವಿಸಬಹುದು.</string>
+    <string name="info_ppr_disease_content">ರೋಗ: ಪಿ.ಪಿ.ಆರ್ (PPR)
+ಕಾರಕ: PPR ವೈರಸ್ / ಮೊರ್ಬಿಲಿವೈರಸ್
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರಗಳು: ಸಜೀವ ದುರ್ಬಲಗೊಂಡ ಜೀವಕೋಶದ ಸಂಸ್ಕೃತಿ PPR ಲಸಿಕೆ (ಫ್ರೀಜ್-ಡ್ರೈಡ್)
+ಸೇರೋಟೈಪ್: ಸುಂಗ್ರಿ/೯೬ ಸ್ಟ್ರೈನ್
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+ವಯಸ್ಸು: ೪ ತಿಂಗಳ ವಯಸ್ಸು
+ಡೋಸ್‌ಗಳ ಸಂಖ್ಯೆ: ಒಂದೇ ಡೋಸ್
+ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯ ಅವಧಿ: ಕನಿಷ್ಠ ೩ ವರ್ಷಗಳು
+ಮಾರ್ಗ: ಚರ್ಮದ ಕೆಳಗೆ (Subcutaneous)
+ಬೂಸ್ಟರ್: ೩ ವರ್ಷಗಳ ನಂತರ ಮಾತ್ರ
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ಮೇಕೆಗಳಿಗೆ ಅತ್ಯಂತ ಪ್ರಮುಖವಾದ ಲಸಿಕೆಗಳಲ್ಲಿ ಒಂದು
+- ಹೆಚ್ಚು ಸಾಂಕ್ರಾಮಿಕ ರೋಗದ ವಿರುದ್ಧ ರಕ್ಷಿಸುತ್ತದೆ
+- ಜೀವನದ ಒಂದೇ ಡೋಸ್ ದೀರ್ಘಕಾಲದ ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯನ್ನು ನೀಡುತ್ತದೆ</string>
+    <string name="info_sheep_pox_disease_content">ರೋಗ: ಕುರಿ ಸಿಡುಬು
+ಕಾರಕ: ಕುರಿ ಸಿಡುಬು ವೈರಸ್ / ಕ್ಯಾಪ್ರಿಪಾಕ್ಸ್ ವೈರಸ್
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರಗಳು: ಫ್ರೀಜ್-ಡ್ರೈಡ್ ಲಸಿಕೆಯಲ್ಲಿ ದುರ್ಬಲಗೊಂಡ ವೈರಸ್
+ಸೇರೋಟೈಪ್‌ಗಳು: ಶ್ರೀನಗರ ಸ್ಟ್ರೈನ್, ರೋಮೇನಿಯನ್ ಫ್ಯಾನರ್ ಸ್ಟ್ರೈನ್, ರಾಣಿಪೇಟ್ ಸ್ಟ್ರೈನ್
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+ವಯಸ್ಸು: ೪ ತಿಂಗಳು ಮತ್ತು ಅದಕ್ಕಿಂತ ಹೆಚ್ಚು
+ಆವರ್ತನ: ವರ್ಷಕ್ಕೊಮ್ಮೆ ಕನಿಷ್ಠ
+ಮಾರ್ಗ: ಚರ್ಮದ ಕೆಳಗೆ (Subcutaneous)
+ಅತ್ಯುತ್ತಮ ಸಮಯ: ರೋಗದ ಋತುವಿನ ಮೊದಲು (ಫೆಬ್ರವರಿ-ಮಾರ್ಚ್)
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ಕುರಿಗಳಿಗೆ ಮಾತ್ರ (ಮೇಕೆಗಳಿಗಲ್ಲ)
+- ಸಂಪೂರ್ಣ ರಕ್ಷಣೆಗಾಗಿ ವಾರ್ಷಿಕ ಲಸಿಕೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ
+- ರೋಗದ ಅಪಾಯ ಹೆಚ್ಚಿರುವ ತಂಪಾದ ತಿಂಗಳುಗಳಲ್ಲಿ ಮುಖ್ಯವಾಗಿದೆ</string>
+    <string name="info_goat_pox_disease_content">ರೋಗ: ಮೇಕೆ ಸಿಡುಬು
+ಕಾರಕ: ಮೇಕೆ ಸಿಡುಬು ವೈರಸ್ / ಕ್ಯಾಪ್ರಿಪಾಕ್ಸ್ ವೈರಸ್
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರಗಳು: ಸಜೀವ ದುರ್ಬಲಗೊಂಡ ಜೀವಕೋಶದ ಸಂಸ್ಕೃತಿ ಮೇಕೆ-ಸಿಡುಬು ಲಸಿಕೆ
+ಸೇರೋಟೈಪ್: ಉತ್ತರಕಾಶಿ ಸ್ಟ್ರೈನ್
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+ವಯಸ್ಸು: ೪ ತಿಂಗಳು ಅಥವಾ ಅದಕ್ಕಿಂತ ಹೆಚ್ಚು
+ಆವರ್ತನ: ವಾರ್ಷಿಕ ಲಸಿಕೆ
+ಮಾರ್ಗ: ಚರ್ಮದ ಕೆಳಗೆ (Subcutaneous)
+ಸಮಯ: ಮರಿ ಹಾಕುವ ಋತುವಿನ ನಂತರ ಅಥವಾ ಸಂತಾನೋತ್ಪತ್ತಿ ಋತುವಿನ ಮೊದಲು
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ಮೇಕೆಗಳಿಗೆ ಮಾತ್ರ (ಕುರಿಗಳಿಗಲ್ಲ)
+- ಹೆಚ್ಚಿನ ಮರಣ ಪ್ರಮಾಣದ ರೋಗದ ವಿರುದ್ಧ ರಕ್ಷಿಸುತ್ತದೆ
+- ಮುಂದುವರಿದ ರೋಗನಿರೋಧಕ ಶಕ್ತಿಗಾಗಿ ವಾರ್ಷಿಕ ಬೂಸ್ಟರ್ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ</string>
+    <string name="info_fmd_disease_content">ರೋಗ: ಕಾಲುಬಾಯಿ ರೋಗ (FMD)
+ಕಾರಕ: FMD ವೈರಸ್ / ಆಫ್ತೋವೈರಸ್
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರ ೧: ಇನ್ಆಕ್ಟಿವೇಟೆಡ್ ಟಿಶ್ಯೂ ಕಲ್ಚರ್ ಅಲ್ಯೂಮಿನಿಯಂ ಹೈಡ್ರಾಕ್ಸೈಡ್ ಜೆಲ್ ಅಡ್ಸಾರ್ಬ್ಡ್ ಲಸಿಕೆ
+ಪ್ರಕಾರ ೨: ಇನ್ಆಕ್ಟಿವೇಟೆಡ್ ಟಿಶ್ಯೂ ಕಲ್ಚರ್ ಆಯಿಲ್ ಅಡ್ಜುವೆಂಟ್ ಲಸಿಕೆ
+ಪ್ರಕಾರ ೩: ಸಂಯೋಜಿತ ಲಸಿಕೆಗಳು
+ಸೇರೋಟೈಪ್‌ಗಳು: FMDV ಸೇರೋಟೈಪ್‌ಗಳು O, A, ಮತ್ತು ಏಷ್ಯಾ 1
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+೧. ವಯಸ್ಸು: ಮೊದಲ ಡೋಸ್ ೪ ತಿಂಗಳ ವಯಸ್ಸಿನಲ್ಲಿ
+೨. ಪ್ರಾಥಮಿಕ ಕೋರ್ಸ್: ಮೊದಲ ಡೋಸ್ + ೨-೪ ವಾರಗಳಲ್ಲಿ ಬೂಸ್ಟರ್
+೩. ಆವರ್ತನ: ಪ್ರತಿ ೬ ತಿಂಗಳಿಗೊಮ್ಮೆ ಬೂಸ್ಟರ್
+೪. ಪ್ರಮಾಣಿತ ವೇಳಾಪಟ್ಟಿ: ಮಾರ್ಚ್ ಮತ್ತು ಅಕ್ಟೋಬರ್
+೫. ಮಾರ್ಗ: ಸ್ನಾಯುವಿನೊಳಗೆ (Intramuscular)
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ಮುಂದುವರಿದ ರೋಗನಿರೋಧಕ ಶಕ್ತಿಗಾಗಿ ನಿಯಮಿತ ಬೂಸ್ಟರ್‌ಗಳು ಬೇಕಾಗುತ್ತವೆ
+- ಸ್ಥಿರ ವೇಳಾಪಟ್ಟಿ (ಮಾರ್ಚ್ ಮತ್ತು ಅಕ್ಟೋಬರ್) ಭಾರತದ ಲಸಿಕಾ ಕ್ಯಾಲೆಂಡರ್ ಅನ್ನು ಅನುಸರಿಸುತ್ತದೆ
+- ಕುರಿ ಮತ್ತು ಮೇಕೆಗಳೆರಡಕ್ಕೂ ಅನ್ವಯಿಸುತ್ತದೆ</string>
+    <string name="info_hs_disease_content">ರೋಗ: ಘಟಸಪ್ಪೆ ರೋಗ (HS)
+ಕಾರಕ: ಪಾಶ್ಚರೆಲ್ಲಾ ಮಲ್ಟೋಸಿಡಾ (ಸೇರೋಟೈಪ್ B:2)
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರಗಳು: ಇನ್ಆಕ್ಟಿವೇಟೆಡ್ ಅಲ್ಯೂಮಿನಿಯಂ ಹೈಡ್ರಾಕ್ಸೈಡ್ ಜೆಲ್ ಅಡ್ಸಾರ್ಬ್ಡ್ ಲಸಿಕೆ
+        ಇನ್ಆಕ್ಟಿವೇಟೆಡ್ ಆಲಂ ಪ್ರೆಸಿಪಿಟೇಟೆಡ್ ಲಸಿಕೆ
+        ಇನ್ಆಕ್ಟಿವೇಟೆಡ್ ಆಯಿಲ್ ಅಡ್ಜುವೆಂಟ್ ಲಸಿಕೆ
+ಸೇರೋಟೈಪ್: P. ಮಲ್ಟೋಸಿಡಾ P52
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+ವಯಸ್ಸು: ೬ ತಿಂಗಳು ಮತ್ತು ಅದಕ್ಕಿಂತ ಹೆಚ್ಚು
+ಆವರ್ತನ: ವಾರ್ಷಿಕ ಲಸಿಕೆ
+ಅತ್ಯುತ್ತಮ ಸಮಯ: ಮುಂಗಾರಿನ ಮೊದಲು (ಮೇ-ಜೂನ್)
+ಮಾರ್ಗ: ಚರ್ಮದ ಕೆಳಗೆ (Subcutaneous)
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ಮಳೆಯ ಸಮಯದಲ್ಲಿ ರೋಗ ಹರಡುವುದರಿಂದ ಮುಂಗಾರು ಪೂರ್ವ ಲಸಿಕೆ ಅತ್ಯಗತ್ಯ
+- ವಾರ್ಷಿಕ ಬೂಸ್ಟರ್ ಒಂದು ವರ್ಷದ ರಕ್ಷಣೆ ನೀಡುತ್ತದೆ
+- ಕುರಿ ಮತ್ತು ಮೇಕೆಗಳೆರಡನ್ನೂ ರಕ್ಷಿಸುತ್ತದೆ
+- ಹಿಂಡಿನ ರೋಗನಿರೋಧಕ ಕಾರ್ಯಕ್ರಮದ ಪ್ರಮುಖ ಭಾಗವಾಗಿದೆ</string>
+    <string name="info_anthrax_disease_content">ರೋಗ: ಆಂಥ್ರಾಕ್ಸ್
+ಕಾರಕ: ಬೆಸಿಲಸ್ ಆಂಥ್ರಾಸಿಸ್
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರ: ಆಂಥ್ರಾಕ್ಸ್ ಸಜೀವ ಸ್ಪೋರ್ ಲಸಿಕೆ
+ಸೇರೋಟೈಪ್‌ಗಳು: ಬೆಸಿಲಸ್ ಆಂಥ್ರಾಸಿಸ್ ಸ್ಟರ್ನ್ ಸ್ಟ್ರೈನ್ (34 F₂)
+ಕನಿಷ್ಠ ಡೋಸ್: ಪ್ರತಿ ಡೋಸ್‌ಗೆ ೫.೦ ಮಿಲಿಯನ್ ಸ್ಪೋರ್‌ಗಳು
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+೧. ವಯಸ್ಸು: ೬ ತಿಂಗಳ ವಯಸ್ಸು
+೨. ಆವರ್ತನ: ವಾರ್ಷಿಕ ಲಸಿಕೆ
+೩. ಅತ್ಯುತ್ತಮ ಸಮಯ: ಮುಂಗಾರಿನ ಮೊದಲು (ಜುಲೈ-ಆಗಸ್ಟ್)
+೪. ಮಾರ್ಗ: ಚರ್ಮದ ಕೆಳಗೆ (Subcutaneous)
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ಆಂಥ್ರಾಕ್ಸ್ ಎಂಜೂಟಿಕ್ ಪ್ರದೇಶಗಳಲ್ಲಿ ಮಾತ್ರ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ
+- ಕರ್ನಾಟಕದ ಆದ್ಯತಾ ವಲಯಗಳು: ಚಾಮರಾಜನಗರ, ಮಂಡ್ಯ, ಮೈಸೂರು ಜಿಲ್ಲೆಗಳು
+- ಹೆಚ್ಚಿನ ಅಪಾಯವಿರುವ ಪ್ರದೇಶಗಳಲ್ಲಿ ವಾರ್ಷಿಕ ಬೂಸ್ಟರ್ ಅತ್ಯಗತ್ಯ
+- ಈ ನಿರ್ದಿಷ್ಟ ಪ್ರದೇಶಗಳಲ್ಲಿ ಹೆಚ್ಚು ನಿರ್ಣಾಯಕವಾಗಿದೆ</string>
+    <string name="info_enterotoxemia_disease_content">ರೋಗ: ಕರುಳಿನ ವಿಷಪ್ರಭುತ್ವ (ET)
+ಕಾರಕ: ಕ್ಲೋಸ್ಟ್ರಿಡಿಯಮ್ ಪರ್ಫ್ರಿಂಜೆನ್ಸ್ ಟೈಪ್ D
+
+ಲಸಿಕೆ ವಿವರಗಳು:
+ಪ್ರಕಾರ: ಫಾರ್ಮಾಲಿನ್ ಇನ್ಆಕ್ಟಿವೇಟೆಡ್ ಕಲ್ಚರ್ಸ್ ಅಲ್ಯೂಮಿನಿಯಂ ಹೈಡ್ರಾಕ್ಸೈಡ್ ಜೆಲ್‌ನೊಂದಿಗೆ ಎಪ್ಸಿಲಾನ್ ಟಾಕ್ಸಾಯ್ಡ್
+ಸೇರೋಟೈಪ್: ಕ್ಲೋಸ್ಟ್ರಿಡಿಯಮ್ ಪರ್ಫ್ರಿಂಜೆನ್ಸ್ ಟೈಪ್ D
+
+ಲಸಿಕಾ ಪ್ರೋಟೋಕಾಲ್:
+೧. ವಯಸ್ಸು:
+- ೪ ತಿಂಗಳ ವಯಸ್ಸು (ತಾಯಿಗೆ ಲಸಿಕೆ ಹಾಕಿದ್ದರೆ)
+- ೧ ವಾರದ ವಯಸ್ಸು (ತಾಯಿಗೆ ಲಸಿಕೆ ಹಾಕದಿದ್ದರೆ)
+
+೨. ಬೂಸ್ಟರ್: ಪ್ರಾಥಮಿಕ ಲಸಿಕೆಯ ೧೫ ದಿನಗಳ ನಂತರ
+
+೩. ವಾರ್ಷಿಕ ಬೂಸ್ಟರ್: ಮುಂಗಾರಿನ ಮೊದಲು
+
+೪. ಮಾರ್ಗ: ಚರ್ಮದ ಕೆಳಗೆ (Subcutaneous)
+
+ವಿಶೇಷ ಸೂಚನೆಗಳು:
+- ತಾಯಿಯ ಲಸಿಕೆ ಸ್ಥಿತಿಯು ಪ್ರಾರಂಭದ ವಯಸ್ಸನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ
+- ಪ್ರಾಥಮಿಕ ಡೋಸ್ ನಂತರ ೧೫ ದಿನಗಳ ಬೂಸ್ಟರ್ ಅಗತ್ಯವಿದೆ
+- ವಾರ್ಷಿಕ ಲಸಿಕೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ
+- ಕುರಿ ಮತ್ತು ಮೇಕೆಗಳೆರಡನ್ನೂ ರಕ್ಷಿಸುತ್ತದೆ
+- ಎಳೆಯ ಪ್ರಾಣಿಗಳಿಗೆ ಮುಖ್ಯವಾಗಿದೆ</string>
+    <string name="info_when_not_to_vaccinate_content">⚠️ ಲಸಿಕೆ ಹಾಕಬಾರದ ಪರಿಸ್ಥಿತಿಗಳು:
+
+ಪ್ರಾಣಿ ಅನಾರೋಗ್ಯದಿಂದಿದ್ದಾಗ
+೧. ಪ್ರಾಣಿಗೆ ಜ್ವರ ಇದ್ದರೆ (ತಾಪಮಾನ > ೩೯°C)
+೨. ಪ್ರಾಣಿ ಯಾವುದೇ ರೋಗದ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿದ್ದರೆ
+೩. ಪ್ರಾಣಿ ದುರ್ಬಲವಾಗಿ ಅಥವಾ ಆಲಸ್ಯವಾಗಿ ಕಂಡುಬಂದರೆ
+
+ಪ್ರಾಣಿ ಗರ್ಭಿಣಿಯಾಗಿದ್ದಾಗ
+- ಗರ್ಭಧಾರಣೆಯ ಕೊನೆಯ ಮೂರು ತಿಂಗಳಲ್ಲಿ ಸಜೀವ ಲಸಿಕೆಗಳನ್ನು ತಪ್ಪಿಸಿ
+- ನಿಷ್ಕ್ರಿಯ ಲಸಿಕೆಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ನೀಡಬಹುದು
+
+ಪ್ರಾಣಿ ಅಪೌಷ್ಟಿಕತೆಯಿಂದಿದ್ದಾಗ
+- ಕಳಪೆ ಪೌಷ್ಟಿಕಾಂಶದ ಸ್ಥಿತಿಯು ಲಸಿಕೆ ಪರಿಣಾಮಕಾರಿತ್ವವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ
+- ಪ್ರಾಣಿ ಪೌಷ್ಟಿಕಾಂಶದ ದೃಷ್ಟಿಯಿಂದ ಚೇತರಿಸಿಕೊಳ್ಳುವವರೆಗೆ ಕಾಯಿರಿ
+
+ಪ್ರಾಣಿ ರೋಗನಿರೋಧಕ ಶಕ್ತಿ ಕುಂದಿದ್ದರೆ
+- ಇತ್ತೀಚಿನ ಸಹವರ್ತಿ ಅನಾರೋಗ್ಯ
+- ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯನ್ನು ಕುಂಠಿತಗೊಳಿಸುವ ಚಿಕಿತ್ಸೆಗಳು
+
+ಇತ್ತೀಚಿನ ಔಷಧಿಗಳು
+- ಜಂತುಹುಳು ನಿವಾರಕಗಳು: ಲಸಿಕೆ ಹಾಕುವ ಮೊದಲು ೧ ವಾರ ಕಾಯಿರಿ
+- ಪ್ರತಿಜೀವಕಗಳು: ಲಸಿಕಾ ಅವಧಿಯಲ್ಲಿ ತಪ್ಪಿಸಿ
+
+ಒತ್ತಡದ ಪರಿಸ್ಥಿತಿಗಳು
+- ಸಾರಿಗೆ/ಮಾರುಕಟ್ಟೆ ಮಾನ್ಯತೆಯ ನಂತರ
+- ವಿಪರೀತ ಹವಾಮಾನದ ಸಮಯದಲ್ಲಿ
+- ಸಂತಾನೋತ್ಪತ್ತಿ/ಮರಿ ಹಾಕುವ ಋತುವಿನಲ್ಲಿ (ನಿರ್ದಿಷ್ಟ ಲಸಿಕೆಗಳನ್ನು ಹೊರತುಪಡಿಸಿ)
+
+ಅಸಮರ್ಪಕ ಕೋಲ್ಡ್ ಚೈನ್
+- ಲಸಿಕೆ ಹಾನಿಯ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿದ್ದರೆ
+- ತಾಪಮಾನ ಬದಲಾವಣೆಯಿಂದ ಕೋಲ್ಡ್ ಚೈನ್ ಮುರಿದಿದ್ದರೆ
+- ಕರಗಿದ ಲಸಿಕೆಯನ್ನು ಎಂದಿಗೂ ಮತ್ತೆ ಫ್ರೀಜ್ ಮಾಡಬೇಡಿ
+
+ಪ್ರಮುಖ ನೆನಪೋಲೆ
+ನಿಮ್ಮ ಪ್ರಾಣಿಗಳ ಬಗ್ಗೆ ನಿರ್ದಿಷ್ಟ ಸಲಹೆಗಾಗಿ ಯಾವಾಗಲೂ ಸ್ಥಳೀಯ ಪಶುವೈದ್ಯರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
+
+    <!-- Source Attribution -->
     <string name="info_source_title">ಮಾಹಿತಿಯ ಮೂಲ</string>
-    <string name="info_source_credit">ಮಾಹಿತಿ ಆಧಾರಿತ: ಕೃಷಿ ಮತ್ತು ಪರಿಸ್ಥಿತಿ ವಿಭಾಗ (ಭಾರತ), ICAR, ಕರ್ನಾಟಕ ಪ್ರಾಣಿ ಆರೋಗ್ಯ ವಿಭಾಗ. ಜಾನುವಾರುಗಳ ಆರೋಗ್ಯ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ಪ್ರಾದೇಶಿಕ ಪಶುವೈದ್ಯರನ್ನು ಯಾವಾಗಲೂ ಸಂಪರ್ಕಿಸಿ.</string>
+    <string name="info_source_credit">ಮಾಹಿತಿ ಆಧಾರಿತ: ಭಾರತ ಸರ್ಕಾರ ಕೃಷಿ ಮತ್ತು ಪರಿಸ್ಥಿತಿ ವಿಭಾಗ, ICAR, ಕರ್ನಾಟಕ ಪ್ರಾಣಿ ಆರೋಗ್ಯ ವಿಭಾಗ, OIE. ಜಾನುವಾರುಗಳ ಆರೋಗ್ಯ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ಪ್ರಾದೇಶಿಕ ಪಶುವೈದ್ಯರನ್ನು ಯಾವಾಗಲೂ ಸಂಪರ್ಕಿಸಿ.</string>
 
-    <!-- General Information Content in Kannada -->
-    <string name="info_what_is_vaccine_content">ಲಸಿಕೆ ಎನ್ನುವುದು ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯನ್ನು ಉತ್ಪಾದಿಸುವ ಮತ್ತು ರೋಗಕಾರಕ ಜೀವಿಗಳ ವಿರುದ್ಧ ರಕ್ಷಣೆ ನೀಡುವ ಒಂದು ಜೈವಿಕ ತಯಾರಿಕೆಯಾಗಿದೆ. ಇದು ಪ್ರಾಣಿಗಳ ದೇಹಕ್ಕೆ ರೋಗ ಬರದಂತೆ ಮುನ್ನೆಚ್ಚರಿಕೆ ನೀಡುತ್ತದೆ.</string>
-    <string name="info_types_of_vaccines_content">೧. ಸಜೀವ ಲಸಿಕೆಗಳು (Live Vaccines)\n೨. ನಿಷ್ಕ್ರಿಯ ಲಸಿಕೆಗಳು (Inactivated/Killed Vaccines)\n೩. ಟಾಕ್ಸಾಯ್ಡ್‌ಗಳು (Toxoids)</string>
-    <string name="info_advantages_content">✓ ರೋಗ ಹರಡುವುದನ್ನು ತಡೆಯುತ್ತದೆ.\n✓ ಪ್ರಾಣಿಗಳ ಸಾವಿನ ಪ್ರಮಾಣವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.\n✓ ಚಿಕಿತ್ಸಾ ವೆಚ್ಚವನ್ನು ಉಳಿಸುತ್ತದೆ.\n✓ ಹಾಲಿನ ಮತ್ತು ಮಾಂಸದ ಉತ್ಪಾದನೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ.</string>
-    <string name="info_important_points_content">೧. ಆರೋಗ್ಯವಂತ ಪ್ರಾಣಿಗಳಿಗೆ ಮಾತ್ರ ಲಸಿಕೆ ಹಾಕಿ.\n೨. ಲಸಿಕೆಯನ್ನು ತಂಪಾದ ಜಾಗದಲ್ಲಿ ಇರಿಸಿ.\n೩. ಸರಿಯಾದ ಪ್ರಮಾಣದಲ್ಲಿ ಮತ್ತು ಸರಿಯಾದ ಜಾಗಕ್ಕೆ ಲಸಿಕೆ ಹಾಕಿ.</string>
-    <string name="info_vaccine_failure_content">ಲಸಿಕೆ ಹಾಕಿದರೂ ರೋಗ ಬರುವುದಕ್ಕೆ ಹಲವು ಕಾರಣಗಳಿವೆ: ಲಸಿಕೆಯ ಗುಣಮಟ್ಟ ಕುಸಿತ, ಸರಿಯಾದ ಶೇಖರಣೆ ಇಲ್ಲದಿರುವುದು, ಅಥವಾ ಪ್ರಾಣಿಯು ಈಗಾಗಲೇ ರೋಗದ ಸುಪ್ತ ಹಂತದಲ್ಲಿದ್ದರೆ.</string>
-    <string name="info_ppr_disease_content">ಪಿ.ಪಿ.ಆರ್ (PPR) ಎಂಬುದು ಕುರಿ ಮತ್ತು ಮೇಕೆಗಳಲ್ಲಿ ಕಂಡುಬರುವ ತೀವ್ರವಾದ ವೈರಸ್ ರೋಗ. ಇದು ಜ್ವರ, ಬಾಯಿ ಹುಣ್ಣು ಮತ್ತು ಅತಿಸಾರಕ್ಕೆ ಕಾರಣವಾಗುತ್ತದೆ. ೩ ವರ್ಷಕ್ಕೊಮ್ಮೆ ಲಸಿಕೆ ಹಾಕಬೇಕು.</string>
-    <string name="info_sheep_pox_disease_content">ಕುರಿ ಸಿಡುಬು ರೋಗವು ವೇಗವಾಗಿ ಹರಡುವ ವೈರಸ್ ರೋಗವಾಗಿದೆ. ಮೈಮೇಲೆ ಗುಳ್ಳೆಗಳು ಏಳುವುದು ಇದರ ಮುಖ್ಯ ಲಕ್ಷಣ. ವರ್ಷಕ್ಕೊಮ್ಮೆ ಲಸಿಕೆ ಹಾಕುವುದು ಅವಶ್ಯಕ.</string>
-    <string name="info_goat_pox_disease_content">ಮೇಕೆ ಸಿಡುಬು ರೋಗವು ಕುರಿ ಸಿಡುಬಿನಂತೆಯೇ ಇರುತ್ತದೆ. ಮೇಕೆಗಳಲ್ಲಿ ತೀವ್ರವಾದ ಜ್ವರ ಮತ್ತು ಚರ್ಮದ ಮೇಲೆ ಗಂಟುಗಳು ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತವೆ.</string>
-    <string name="info_fmd_disease_content">ಕಾಲುಬಾಯಿ ರೋಗ (FMD) ಪ್ರಾಣಿಗಳ ಕಾಲು ಮತ್ತು ಬಾಯಿಯಲ್ಲಿ ಹುಣ್ಣುಗಳನ್ನು ಉಂಟುಮಾಡುತ್ತದೆ. ಇದು ಉತ್ಪಾದನೆಯನ್ನು ಕುಂಠಿತಗೊಳಿಸುತ್ತದೆ. ಪ್ರತಿ ೬ ತಿಂಗಳಿಗೊಮ್ಮೆ ಲಸಿಕೆ ಹಾಕಬೇಕು.</string>
-    <string name="info_hs_disease_content">ಘಟಸಪ್ಪೆ ರೋಗ (HS) ಮಳೆಗಾಲದ ಪ್ರಾರಂಭದಲ್ಲಿ ಹೆಚ್ಚು ಕಂಡುಬರುತ್ತದೆ. ಗಂಟಲು ಬಾವು ಮತ್ತು ಉಸಿರಾಟದ ತೊಂದರೆ ಇದರ ಲಕ್ಷಣಗಳು.</string>
-    <string name="info_anthrax_disease_content">ಆಂಥ್ರಾಕ್ಸ್ ಒಂದು ಮಾರಕ ರೋಗವಾಗಿದ್ದು, ಮಣ್ಣಿನಿಂದ ಹರಡುತ್ತದೆ. ಜ್ವರ ಮತ್ತು ಹಠಾತ್ ಸಾವು ಸಂಭವಿಸಬಹುದು. ಬಿಸಿಲು ಕಾಲಕ್ಕೆ ಮುನ್ನ ಲಸಿಕೆ ಹಾಕಬೇಕು.</string>
-    <string name="info_enterotoxemia_disease_content">ಇದು ಮೇವಿನ ಬದಲಾವಣೆಯಿಂದ ಉಂಟಾಗುವ ರೋಗ. ಅತಿಸಾರ ಮತ್ತು ನರಗಳ ತೊಂದರೆ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ. ವರ್ಷಕ್ಕೆ ಎರಡು ಬಾರಿ ಲಸಿಕೆ ಹಾಕಬೇಕು.</string>
-    <string name="info_when_not_to_vaccinate_content">೧. ಪ್ರಾಣಿ ಅನಾರೋಗ್ಯದಿಂದ ಇದ್ದಾಗ.\n೨. ಹವಾಮಾನ ತೀರಾ ಬಿಸಿಯಾಗಿದ್ದಾಗ.\n೩. ಗರ್ಭಧಾರಣೆಯ ಕೊನೆಯ ಹಂತದಲ್ಲಿರುವ ಪ್ರಾಣಿಗಳಿಗೆ.\n೪. ತುಂಬಾ ಚಿಕ್ಕ ಮರಿಗಳಿಗೆ.</string>
-
-    <!-- About App in Kannada -->
+    <!-- About App -->
     <string name="info_about_app">Grama-Vaxi ಬಗ್ಗೆ</string>
-    <string name="add_camp_alert">ಶಿಬಿರದ ಎಚ್ಚರಿಕೆ ಸೇರಿಸಿ</string>
-    <string name="tap_plus_to_add_camp">ಹೊಸ ಶಿಬಿರದ ಎಚ್ಚರಿಕೆಯನ್ನು ಸೇರಿಸಲು + ಟ್ಯಾಪ್ ಮಾಡಿ</string>
-    <string name="camp_title">ಶಿಬಿರದ ಹೆಸರು</string>
-    <string name="camp_location">ಸ್ಥಳ</string>
-    <string name="camp_type">ಪ್ರಕಾರ</string>
-    <string name="camp_description">ವಿವರಣೆ</string>
-    <string name="camp_date">ದಿನಾಂಕ</string>
-    <string name="alert_sent_message">ಸ್ಥಳೀಯ ಪಶುವೈದ್ಯರಿಗೆ ತುರ್ತು ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಲಾಗಿದೆ!</string>
-    <string name="low">ಕಡಿಮೆ</string>
-    <string name="medium">ಮಧ್ಯಮ</string>
-    <string name="high">ಹೆಚ್ಚು</string>
-    <string name="select_animal_label">ಪ್ರಾಣಿಯನ್ನು ಆರಿಸಿ</string>
-    <string name="select_label">ಆಯ್ಕೆ ಮಾಡಿ</string>
-    <string name="known_disease_label">ತಿಳಿದಿರುವ ರೋಗ? (ಯಾವುದಾದರೂ ಇದ್ದರೆ)</string>
-    <string name="select_if_known">ಗೊತ್ತಿದ್ದರೆ ಆಯ್ಕೆ ಮಾಡಿ</string>
-    <string name="enter_disease_name">ರೋಗದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</string>
-    <string name="severity_label">ತೀವ್ರತೆ</string>
-    <string name="symptoms_description_label">ಲಕ್ಷಣಗಳು / ವಿವರಣೆ</string>
-    <string name="symptoms_placeholder">ಪ್ರಾಣಿ ಹೇಗೆ ವರ್ತಿಸುತ್ತಿದೆ ಎಂದು ವಿವರಿಸಿ...</string>
-    <string name="send_emergency_alert">ತುರ್ತು ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಿ</string>
-
-    <!-- Add with other Kannada content -->
     <string name="info_about_app_content">GRAMA-VAXI ಬಗ್ಗೆ
 ಸಂಸ್ಕರಣ: 1.0
 ಬಿಡುಗಡೆ ದಿನಾಂಕ: 2026
@@ -87,13 +407,11 @@ Grama-Vaxi ಎಂಬುದು ಗ್ರಾಮೀಣ ಕರ್ನಾಟಕದ ರ
 © 2026 Grama-Vaxi. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಸಂರಕ್ಷಿತ.
 
 ದತ್ತಾಂಶ ಸಂಕಲಿತ:
-- ಕೃಷಿ ಮತ್ತು ರೈತ ಕಲ್ಯಾಣ ಸರ್ಕಾರ
+- ಕೃಷಿ ಮತ್ತು ರೈತ ಕಲ್ಯಾಣ ಸರ್ಕಾರ, ಭಾರತ
 - ಭಾರತೀಯ ಕೃಷಿ ಸಂಶೋಧನಾ ಮಂಡಳಿ (ICAR)
 - ಕರ್ನಾಟಕ ಪ್ರಾಣಿ ಆರೋಗ್ಯ ವಿಭಾಗ
-- ಮಾನವ ಆರೋಗ್ಯ ಸಂಸ್ಥೆ (OIE)
+- ವಿಶ್ವ ಮಾನವ ಸ್ವಾಸ್ಥ್ಯ ಸಂಸ್ಥೆ (OIE)
 
 ಹೇಳಿಕೆ
-ಈ ಅನ್ವಯವು ಮಾತ್ರ ಮಾಹಿತಿ ಉದ್ದೇಶಾಗಿದೆ. ಜಾನುವಾರುಗಳ ಆರೋಗ್ಯ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ಯಾವಾಗಲೂ ಅರ್ಹ ಪಶುವೈದ್ಯರನ್ನು ಸಂಪರ್ಕಿಸಿ.
-
-ಗ್ರಾಮೀಣ ಪಶುಸಂವರ್ಧನೆಯನ್ನು ಬೆಂಬಲಿಸುವ ಗುರಿಯೊಂದಿಗೆ ಅನ್ವಯವನ್ನು ಅಭಿವೃದ್ಧಿ ಮಾಡಿದೆ.</string>
+ಈ ಅನ್ವಯವು ಮಾತ್ರ ಮಾಹಿತಿ ಉದ್ದೇಶಾಗಿದೆ. ಜಾನುವಾರುಗಳ ಆರೋಗ್ಯ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ಯಾವಾಗಲೂ ಅರ್ಹ ಪಶುವೈದ್ಯರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
 </resources>

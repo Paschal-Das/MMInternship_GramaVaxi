@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -42,7 +43,7 @@ fun AnimalDetailScreen(animalId: Int, navController: NavHostController, viewMode
                 title = { Text(animal?.name ?: stringResource(R.string.app_name)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back))
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
                 actions = {
@@ -60,6 +61,29 @@ fun AnimalDetailScreen(animalId: Int, navController: NavHostController, viewMode
                 modifier = Modifier.padding(innerPadding).fillMaxSize().padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                // ─── PHOTO DISPLAY ─────────────────────────────────────────────
+                // Display animal photo if available (FIX #3)
+                item {
+                    if (animal.photoUri != null) {
+                        Text(
+                            text = stringResource(R.string.animal_photo),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+
+                        AsyncImage(
+                            model = animal.photoUri,
+                            contentDescription = stringResource(R.string.animal_photo),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(250.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .padding(bottom = 16.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
+                }
                 item { AnimalInfoCard(it) }
 
                 item {
@@ -163,6 +187,7 @@ fun VaccineItem(vaccination: Vaccination, isPast: Boolean) {
         VaccineConstants.HS -> R.string.hs_vaccine
         VaccineConstants.BLUETONGUE -> R.string.bluetongue_vaccine
         VaccineConstants.ENTEROTOXEMIA -> R.string.enterotoxemia
+        VaccineConstants.CCPP -> R.string.ccpp_vaccine
         VaccineConstants.ANTHRAX -> R.string.anthrax_vaccine
         "Initial Health Checkup" -> R.string.initial_checkup
         else -> null
