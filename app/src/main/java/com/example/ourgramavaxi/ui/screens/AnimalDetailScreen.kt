@@ -138,15 +138,7 @@ fun AnimalInfoCard(animal: Animal) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            animal.photoUri?.let { uri ->
-                AsyncImage(
-                    model = uri, contentDescription = null,
-                    modifier = Modifier.fillMaxWidth().height(200.dp)
-                        .clip(RoundedCornerShape(8.dp)).background(MaterialTheme.colorScheme.surface),
-                    contentScale = ContentScale.Crop
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-            }
+
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 Column {
                     Text("${stringResource(R.string.breed)}: $breedText", style = MaterialTheme.typography.bodyLarge)
