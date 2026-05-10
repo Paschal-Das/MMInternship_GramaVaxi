@@ -7,26 +7,25 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ourgramavaxi.ui.screens.*
 import com.example.ourgramavaxi.ui.theme.OurGramaVaxiTheme
 import com.example.ourgramavaxi.viewmodel.AnimalViewModel
-import com.example.ourgramavaxi.viewmodel.AnimalViewModelFactory
 import java.util.*
 
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val app = application as GramaVaxiApplication
-            val viewModel: AnimalViewModel = viewModel(
-                factory = AnimalViewModelFactory(app, app.database.animalDao())
-            )
+            val viewModel: AnimalViewModel = hiltViewModel()
 
             LaunchedEffect(Unit) {
                 viewModel.seedSampleData()

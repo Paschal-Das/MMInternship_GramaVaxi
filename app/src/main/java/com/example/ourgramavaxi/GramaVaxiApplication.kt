@@ -1,8 +1,19 @@
 package com.example.ourgramavaxi
 
 import android.app.Application
-import com.example.ourgramavaxi.data.AppDatabase
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
-class GramaVaxiApplication : Application() {
-    val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
+@HiltAndroidApp
+class GramaVaxiApplication : Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
+
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
 }

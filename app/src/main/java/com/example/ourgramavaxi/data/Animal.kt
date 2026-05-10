@@ -67,7 +67,6 @@ object AnimalConstants {
     val GOAT_BREEDS = listOf<Pair<String, Int>>(
         "Osmanabadi" to R.string.osmanabadi,
         "Bidri" to R.string.bidri,
-        "Malnad Gidda" to R.string.malnad_gidda,
         "Beetal" to R.string.beetal,
         "Kodagu" to R.string.kodagu_breed,
         "Others" to R.string.others
