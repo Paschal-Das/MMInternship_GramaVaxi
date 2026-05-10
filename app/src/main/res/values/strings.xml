@@ -426,4 +426,12 @@ DISCLAIMER -
 This application is for informational purposes only. Always consult with qualified veterinarians for livestock health decisions.
 
 App developed with the goal of supporting rural animal husbandry.</string>
+    <!-- Disease names for Report Sick screen -->
+    <string name="disease_fmd">Foot &amp; Mouth Disease</string>
+    <string name="disease_ppr">Sheep &amp; Goat Plague (PPR)</string>
+    <string name="disease_goat_pox">Goat Pox</string>
+    <string name="disease_sheep_pox">Sheep Pox</string>
+    <string name="disease_hs">Haemorrhagic Septicaemia (HS)</string>
+    <string name="disease_others">Others</string>
+
 </resources>

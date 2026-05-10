@@ -76,15 +76,16 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
                         modifier = Modifier.menuAnchor().fillMaxWidth()
                     )
                     ExposedDropdownMenu(
-                        expanded = animalExpanded,
-                        onDismissRequest = { animalExpanded = false }
+                        expanded = diseaseExpanded,
+                        onDismissRequest = { diseaseExpanded = false }
                     ) {
-                        animals.forEach { animal ->
+                        // ✅ BUG 5 FIX: Iterate over (key, resId) pairs and display localized name
+                        AnimalConstants.DISEASES.forEach { (diseaseKey, diseaseResId) ->
                             DropdownMenuItem(
-                                text = { Text("${animal.name} (${animal.breed})") },
+                                text = { Text(stringResource(diseaseResId)) },
                                 onClick = {
-                                    selectedAnimal = animal
-                                    animalExpanded = false
+                                    selectedDisease = diseaseKey
+                                    diseaseExpanded = false
                                 }
                             )
                         }
@@ -102,7 +103,13 @@ fun ReportSickScreen(navController: NavHostController, viewModel: AnimalViewMode
                 ) {
                     OutlinedTextField(
                         // BUG 5 FIX: Use stringResource
-                        value = selectedDisease.ifEmpty { stringResource(R.string.select_if_known) },
+                        // ✅ BUG 5 FIX: Show localized disease name when one is selected
+                        value = if (selectedDisease.isEmpty()) {
+                            stringResource(R.string.select_if_known)
+                        } else {
+                            val resId = AnimalConstants.DISEASES.find { it.first == selectedDisease }?.second
+                            if (resId != null) stringResource(resId) else selectedDisease
+                        },
                         onValueChange = {},
                         readOnly = true,
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = diseaseExpanded) },

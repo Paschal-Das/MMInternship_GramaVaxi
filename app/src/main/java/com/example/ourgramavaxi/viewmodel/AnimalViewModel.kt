@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-
+import com.example.ourgramavaxi.worker.CampReminderWorker
 @HiltViewModel
 class AnimalViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -33,9 +33,16 @@ class AnimalViewModel @Inject constructor(
     private val updateAnimalUseCase: UpdateAnimalUseCase
 ) : ViewModel() {
 
-    val allAnimals: Flow<List<Animal>> = repository.getAllAnimals()
-    val allUpcomingVaccinations: Flow<List<Vaccination>> = repository.getAllUpcomingVaccinations()
-    val allCampAlerts: Flow<List<CampAlert>> = repository.getAllCampAlerts()
+    // ✅ BUG 4 FIX: Use StateFlow so all screens share ONE database subscription
+    // instead of each creating their own separate query
+    val allAnimals: StateFlow<List<Animal>> = repository.getAllAnimals()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val allUpcomingVaccinations: StateFlow<List<Vaccination>> = repository.getAllUpcomingVaccinations()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val allCampAlerts: StateFlow<List<CampAlert>> = repository.getAllCampAlerts()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     val currentLanguage: StateFlow<String> = preferenceRepository.currentLanguage
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "en")
@@ -120,10 +127,24 @@ class AnimalViewModel @Inject constructor(
             ExistingPeriodicWorkPolicy.KEEP,
             workRequest
         )
-    }
 
+        // ✅ BUG 2 FIX: Also schedule the CampReminderWorker so camp notifications fire
+        val campWorkRequest = PeriodicWorkRequestBuilder<CampReminderWorker>(24, TimeUnit.HOURS)
+            .setInitialDelay(1, TimeUnit.HOURS)
+            .addTag("camp_reminder_periodic_check")
+            .build()
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            "camp_reminder_periodic",
+            ExistingPeriodicWorkPolicy.KEEP,
+            campWorkRequest
+        )
+    }
     fun deleteAnimal(animal: Animal) {
         viewModelScope.launch { repository.deleteAnimal(animal) }
+    }
+
+    fun deleteVaccination(vaccination: Vaccination) {
+        viewModelScope.launch { repository.deleteVaccination(vaccination.animalId, vaccination.vaccineName) }
     }
 
     fun seedSampleData() {
@@ -141,10 +162,18 @@ class AnimalViewModel @Inject constructor(
             val now = System.currentTimeMillis()
             val day = 24 * 60 * 60 * 1000L
 
+            // ✅ BUG B1 FIX applied to seed data: Split FMD into two records
+            // History record (shown in "Vaccination History")
             repository.insertVaccination(Vaccination(
                 animalId = sheepId, vaccineName = VaccineConstants.FMD,
-                dateAdministered = now - (30 * day), nextDueDate = now + (150 * day), isCompleted = true
+                dateAdministered = now - (30 * day), nextDueDate = null, isCompleted = true
             ))
+            // Upcoming reminder record (shown in Calendar, triggers notifications)
+            repository.insertVaccination(Vaccination(
+                animalId = sheepId, vaccineName = VaccineConstants.FMD,
+                dateAdministered = 0, nextDueDate = now + (150 * day), isCompleted = false
+            ))
+
             repository.insertVaccination(Vaccination(
                 animalId = goatId, vaccineName = VaccineConstants.PPR,
                 dateAdministered = now - (400 * day), nextDueDate = now - (35 * day), isCompleted = false
@@ -171,6 +200,10 @@ class AnimalViewModel @Inject constructor(
                 date = calendar.timeInMillis,
                 type = "Health Drive"
             ))
+
+            // ✅ BUG C FIX: Schedule workers after seeding so demo animals get notifications.
+            // Previously, workers were only scheduled when the farmer manually added an animal.
+            scheduleVaccineReminder()
         }
     }
 }

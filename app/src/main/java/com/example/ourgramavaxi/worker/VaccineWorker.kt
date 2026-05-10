@@ -31,16 +31,39 @@ class VaccineWorker @AssistedInject constructor(
             val dueForNotification = upcoming.filter { vacc ->
                 val dueDate = vacc.nextDueDate ?: 0L
                 val notifyStartTime = dueDate - notifyWindowMs
-                !vacc.isCompleted && dueDate > 0 && now >= notifyStartTime && now < dueDate
+
+                // ✅ BUG D FIX: Removed "now < dueDate" condition.
+                //
+                // OLD: !vacc.isCompleted && dueDate > 0 && now >= notifyStartTime && now < dueDate
+                // Problem: Once the due date passes, "now < dueDate" is permanently false.
+                // If Doze mode or a dead battery delayed the worker past the 3-day window,
+                // the farmer gets ZERO notification — even for a very overdue animal.
+                //
+                // NEW: Notify for anything within the window OR already overdue.
+                // The "isCompleted = 0" in the DAO query already ensures we stop notifying
+                // once the farmer updates the animal's vaccination record as given.
+                !vacc.isCompleted && dueDate > 0 && now >= notifyStartTime
             }
 
             dueForNotification.forEach { vacc ->
                 val animal = animalDao.getAnimalById(vacc.animalId)
-                val notificationId = (vacc.animalId * 10000 + vacc.id).toInt()  // FIX BUG #4
+                val notificationId = (vacc.animalId * 10000 + vacc.id).toInt()
+
+                // ✅ BUG D FIX: Calculate actual days remaining for an accurate message.
+                // Old message always said "in 3 days" regardless of real due date.
+                val dueDate = vacc.nextDueDate ?: 0L
+                val daysRemaining = (dueDate - now) / (24 * 60 * 60 * 1000L)
+
+                val urgencyText = when {
+                    daysRemaining < 0  -> "OVERDUE by ${-daysRemaining} day(s)! (ತಡವಾಗಿದೆ)"
+                    daysRemaining == 0L -> "DUE TODAY! (ಇಂದು)"
+                    daysRemaining == 1L -> "due TOMORROW (ನಾಳೆ)"
+                    else               -> "due in $daysRemaining days"
+                }
 
                 notificationHelper.showNotification(
-                    title = "Upcoming Vaccine! (ಲಸಿಕೆ ಸಮಯ)",
-                    message = "${animal?.name ?: "Animal"} is due for ${vacc.vaccineName} in ${VaccineConstants.NOTIFICATION_DAYS} days.",
+                    title = "ಲಸಿಕೆ ಸಮಯ! — ${animal?.name ?: "Animal"}",
+                    message = "${vacc.vaccineName} is $urgencyText.",
                     notificationId = notificationId
                 )
             }

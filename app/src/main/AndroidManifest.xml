@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Notification permission (required on Android 13+) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <!-- PHOTO FIX: Storage permissions for photo picker -->
-    <!-- Android 13+ uses READ_MEDIA_IMAGES instead of READ_EXTERNAL_STORAGE -->
+    <!-- Storage permissions for photo picker -->
     <uses-permission
         android:name="android.permission.READ_MEDIA_IMAGES"
         android:minSdkVersion="33" />
-    <!-- Android 6 to 12 use READ_EXTERNAL_STORAGE -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -25,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OurGramaVaxi">
-        android:name=".GramaVaxiApplication"
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

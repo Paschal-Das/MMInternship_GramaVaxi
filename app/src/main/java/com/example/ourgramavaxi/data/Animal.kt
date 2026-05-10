@@ -72,13 +72,15 @@ object AnimalConstants {
         "Others" to R.string.others
     )
 
-    val DISEASES = listOf(
-        "Foot & Mouth Disease",
-        "Sheep & Goat Plague (PPR)",
-        "Goat Pox",
-        "Sheep Pox",
-        "Haemorrhagic Septicaemia (HS)",
-        "Others"
+    // ✅ BUG 5 FIX: Diseases now use (key, resId) pairs just like SHEEP_BREEDS and GOAT_BREEDS
+    // so they can be properly localized in Kannada
+    val DISEASES = listOf<Pair<String, Int>>(
+        "Foot & Mouth Disease"             to R.string.disease_fmd,
+        "Sheep & Goat Plague (PPR)"        to R.string.disease_ppr,
+        "Goat Pox"                         to R.string.disease_goat_pox,
+        "Sheep Pox"                        to R.string.disease_sheep_pox,
+        "Haemorrhagic Septicaemia (HS)"    to R.string.disease_hs,
+        "Others"                           to R.string.disease_others
     )
 }
 

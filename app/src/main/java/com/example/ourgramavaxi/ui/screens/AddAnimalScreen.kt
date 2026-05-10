@@ -107,11 +107,40 @@ fun AddAnimalScreen(
 
     // ─── PHOTO FIX: Image picker launcher ────────────────────────────────────────────
     // This opens the phone's gallery. No file provider or complex setup needed.
+    // ✅ BUG A FIX: Copy the photo into the app's private storage immediately.
+// content:// URIs are temporary — they expire when the app closes.
+// Copying to filesDir gives the app permanent ownership of the image.
     val imagePicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri ->
-        // uri is the content:// URI of the selected photo — save it as a String
-        uri?.let { selectedPhotoUri = it.toString() }
+        uri?.let {
+            val savedPath = copyPhotoToInternalStorage(context, it)
+            selectedPhotoUri = savedPath ?: it.toString()
+        }
+    }
+    /**
+     * Copies a photo from any URI source (gallery, files app, etc.) into
+     * the app's private internal storage. This permanently preserves the photo
+     * even after the original content:// URI permission expires on app restart.
+     *
+     * Returns a "file://" URI string that Coil's AsyncImage can load directly,
+     * or null if the copy fails (e.g. user denied storage permission).
+     */
+    fun copyPhotoToInternalStorage(context: android.content.Context, sourceUri: android.net.Uri): String? {
+        return try {
+            val inputStream = context.contentResolver.openInputStream(sourceUri) ?: return null
+            // Unique filename based on timestamp to prevent collisions
+            val fileName = "animal_photo_${System.currentTimeMillis()}.jpg"
+            val outputFile = java.io.File(context.filesDir, fileName)
+            outputFile.outputStream().use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+            // Return as file:// URI — Coil's AsyncImage handles this format everywhere
+            "file://${outputFile.absolutePath}"
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null // Photo won't be saved, but app won't crash
+        }
     }
 
     // Permission launcher — needed for Android 13+ (READ_MEDIA_IMAGES)

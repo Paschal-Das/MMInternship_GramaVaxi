@@ -35,28 +35,45 @@ class UpdateAnimalUseCase @Inject constructor(
         )
         repository.updateAnimal(updatedAnimal)
 
-        // Only delete & re-insert the SPECIFIC vaccine being submitted.
+        // ── LOOP 1: Re-insert vaccines where farmer provided a "Last Given" date ──
         lastVaccineDates.forEach { (vaccineName, lastDate) ->
+            // Delete ALL existing records for this vaccine (both completed + upcoming)
+            // before re-inserting, so edits don't create duplicate rows.
             repository.deleteVaccination(id, vaccineName)
 
             if (lastDate != null) {
                 val intervalDays = VaccineConstants.VACCINE_INTERVALS[vaccineName] ?: 365
+
+                // ✅ BUG B1 FIX: Same two-record split as RegisterAnimalUseCase.
+                // History record
+                repository.insertVaccination(
+                    Vaccination(
+                        animalId = id,
+                        vaccineName = vaccineName,
+                        dateAdministered = lastDate,
+                        nextDueDate = null,
+                        isCompleted = true
+                    )
+                )
+                // Upcoming reminder record
                 val nextDate = nextVaccineDates[vaccineName]
                     ?: (lastDate + (intervalDays * 24L * 60 * 60 * 1000))
                 repository.insertVaccination(
                     Vaccination(
                         animalId = id,
                         vaccineName = vaccineName,
-                        dateAdministered = lastDate,
+                        dateAdministered = 0,
                         nextDueDate = nextDate,
-                        isCompleted = true
+                        isCompleted = false
                     )
                 )
             }
         }
 
+        // ── LOOP 2: Handle next-only vaccinations ──
         nextVaccineDates.forEach { (vaccineName, nextDate) ->
-            if (nextDate != null && !lastVaccineDates.containsKey(vaccineName)) {
+            // ✅ BUG B2 FIX: was `!lastVaccineDates.containsKey(vaccineName)`
+            if (nextDate != null && lastVaccineDates[vaccineName] == null) {
                 repository.deleteVaccination(id, vaccineName)
                 repository.insertVaccination(
                     Vaccination(

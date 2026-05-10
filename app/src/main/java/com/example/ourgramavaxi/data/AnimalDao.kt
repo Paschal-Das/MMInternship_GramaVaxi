@@ -31,6 +31,7 @@ interface AnimalDao {
     @Query("SELECT * FROM animals WHERE id = :id")
     suspend fun getAnimalById(id: Int): Animal?
 
-    @Query("SELECT * FROM animals WHERE name LIKE :query")
+
+    @Query("SELECT * FROM animals WHERE name LIKE '%' || :query || '%'")
     fun searchAnimals(query: String): Flow<List<Animal>>
 }
